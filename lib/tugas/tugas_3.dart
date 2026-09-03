@@ -63,7 +63,6 @@ class Tugas3 extends StatelessWidget {
             ),
             const Row(
               children: [
-                SizedBox(width: 15),
                 Icon(Icons.phone, color: Colors.black, size: 18),
                 SizedBox(width: 15),
                 Text('081311685803', style: TextStyle(fontSize: 15)),
@@ -74,71 +73,73 @@ class Tugas3 extends StatelessWidget {
             ),
             SizedBox(height: 40),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 100,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 255, 141, 179),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "300++",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Container(
+                    height: 100,
+                    margin: const EdgeInsets.only(right: 5),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 141, 179),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "300++",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      // SizedBox(height: 10),
-                      Text(
-                        "book sold per month",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
+                        Text(
+                          "book sold per month",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  height: 100,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 255, 141, 179),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "4.8 / 5",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+
+                Expanded(
+                  child: Container(
+                    height: 100,
+                    margin: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 141, 179),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "4.8 / 5",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5),
-                          Icon(Icons.star, color: Colors.yellow, size: 18),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        "rate by user",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ],
+                            SizedBox(width: 5),
+                            Icon(Icons.star, color: Colors.yellow, size: 18),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "rate by user",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 60),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0),
               child: Text(
