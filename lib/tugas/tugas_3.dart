@@ -138,12 +138,13 @@ class Tugas3 extends StatelessWidget {
               ],
             ),
             SizedBox(height: 60),
+
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0),
+              padding: EdgeInsets.symmetric(horizontal: 0),
               child: Text(
                 "Harumony Mystic Emporium adalah toko buku bernuansa magis yang menghadirkan koleksi novel fantasi, buku misteri, mitologi, spiritualitas, hingga literatur klasik dalam suasana hangat dan estetik. Dengan sentuhan tema celestial dan enchanted, toko ini dirancang sebagai tempat nyaman bagi para pecinta buku untuk menjelajahi dunia imajinasi, pengetahuan, dan kisah penuh keajaiban. Selain buku, Harumony Mystic Emporium juga menawarkan berbagai aksesori dan dekorasi bertema mystic yang menambah pengalaman membaca terasa lebih unik dan memikat.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 14, fontFamily: "Milky Cream"),
               ),
             ),
             SizedBox(height: 50),
