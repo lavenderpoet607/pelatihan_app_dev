@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_column.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_row.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
@@ -15,10 +15,37 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: const MultiWidgetApp());
+    return MaterialApp(
+      title: 'Pelatihan App Dev',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFFF6F8FA),
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
+      ),
+      home: const MultiWidgetApp(),
+    );
   }
+}
+
+class AppMenuItem {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color color;
+  final Widget page;
+
+  const AppMenuItem({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.color,
+    required this.page,
+  });
 }
 
 class MultiWidgetApp extends StatefulWidget {
@@ -31,68 +58,269 @@ class MultiWidgetApp extends StatefulWidget {
 class _MultiWidgetAppState extends State<MultiWidgetApp> {
   int _currentIndex = 0;
 
-  List<Widget> getWidgets() {
-    return [
-      const LatihanScaffold(),
-      const LatihanColumn(),
-      const LatihanRow(),
-      const LatihanRichText(),
-      const LatihanWidgetIcon(),
-      const LatihanWidgetCircleAvatar(),
-      const Tugas1(),
-      const Tugas2(),
-      const Tugas3(),
-    ];
+  static const List<AppMenuItem> _latihanItems = [
+    AppMenuItem(
+      title: 'Latihan Scaffold',
+      subtitle: 'Belajar struktur dasar halaman dan body',
+      icon: Icons.view_quilt_rounded,
+      color: Colors.blue,
+      page: LatihanScaffold(),
+    ),
+    AppMenuItem(
+      title: 'Latihan Column',
+      subtitle: 'Menyusun widget secara vertikal',
+      icon: Icons.view_column_rounded,
+      color: Colors.indigo,
+      page: LatihanColumn(),
+    ),
+    AppMenuItem(
+      title: 'Latihan Row',
+      subtitle: 'Menyusun widget secara horizontal',
+      icon: Icons.view_stream_rounded,
+      color: Colors.teal,
+      page: LatihanRow(),
+    ),
+    AppMenuItem(
+      title: 'Latihan RichText',
+      subtitle: 'Kustomisasi format dan warna teks',
+      icon: Icons.text_fields_rounded,
+      color: Colors.deepOrange,
+      page: LatihanRichText(),
+    ),
+    AppMenuItem(
+      title: 'Latihan Icon',
+      subtitle: 'Menampilkan berbagai macam ikon',
+      icon: Icons.emoji_symbols_rounded,
+      color: Colors.pink,
+      page: LatihanWidgetIcon(),
+    ),
+    AppMenuItem(
+      title: 'Latihan CircleAvatar',
+      subtitle: 'Menampilkan avatar profil melingkar',
+      icon: Icons.account_circle_rounded,
+      color: Colors.purple,
+      page: LatihanWidgetCircleAvatar(),
+    ),
+  ];
+
+  static const List<AppMenuItem> _tugasItems = [
+    AppMenuItem(
+      title: 'Tugas 1: Profil Saya',
+      subtitle: 'Biodata diri, foto profil, dan info kontak',
+      icon: Icons.person_rounded,
+      color: Colors.amber,
+      page: Tugas1(),
+    ),
+    AppMenuItem(
+      title: 'Tugas 2: Luminous News',
+      subtitle: 'Portal artikel & berita masa depan',
+      icon: Icons.newspaper_rounded,
+      color: Colors.cyan,
+      page: Tugas2(),
+    ),
+    AppMenuItem(
+      title: 'Tugas 3: Detail Toko',
+      subtitle: 'Harumony Mystic Emporium - Toko buku',
+      icon: Icons.storefront_rounded,
+      color: Colors.pinkAccent,
+      page: Tugas3(),
+    ),
+  ];
+
+  void _navigateTo(Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => page));
   }
 
   @override
   Widget build(BuildContext context) {
+    final currentList = _currentIndex == 0 ? _latihanItems : _tugasItems;
+    final currentTitle = _currentIndex == 0
+        ? 'Latihan Widget'
+        : 'Tugas Mandiri';
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'WIDGET LATIHAN',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 248, 14, 14),
-          ),
+        title: Text(
+          currentTitle,
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black87,
+        elevation: 0.5,
       ),
-      body: getWidgets()[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 3, 168, 245),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        onTap: (index) {
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blueAccent, Colors.lightBlue],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.code_rounded,
+                      size: 32,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Pelatihan App Dev',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Kumpulan Latihan & Tugas',
+                    style: TextStyle(color: Colors.white70, fontSize: 13),
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+              child: Text(
+                'LATIHAN WIDGET',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                  letterSpacing: 1,
+                ),
+              ),
+            ),
+            ..._latihanItems.map(
+              (item) => ListTile(
+                leading: Icon(item.icon, color: item.color),
+                title: Text(item.title),
+                dense: true,
+                onTap: () {
+                  Navigator.pop(context);
+                  _navigateTo(item.page);
+                },
+              ),
+            ),
+            const Divider(),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+              child: Text(
+                'TUGAS MANDIRI',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                  letterSpacing: 1,
+                ),
+              ),
+            ),
+            ..._tugasItems.map(
+              (item) => ListTile(
+                leading: Icon(item.icon, color: item.color),
+                title: Text(item.title),
+                dense: true,
+                onTap: () {
+                  Navigator.pop(context);
+                  _navigateTo(item.page);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        itemCount: currentList.length,
+        itemBuilder: (context, index) {
+          final item = currentList[index];
+          return Card(
+            elevation: 0,
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: BorderSide(color: Colors.grey.shade200),
+            ),
+            margin: const EdgeInsets.only(bottom: 12),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(16),
+              onTap: () => _navigateTo(item.page),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: item.color.withAlpha(30),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(item.icon, color: item.color, size: 26),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            item.subtitle,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 16,
+                      color: Colors.grey.shade400,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_agenda),
-            label: 'Scaffold',
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.widgets_outlined),
+            selectedIcon: Icon(Icons.widgets_rounded),
+            label: 'Latihan Widget',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_column),
-            label: 'Column',
+          NavigationDestination(
+            icon: Icon(Icons.assignment_outlined),
+            selectedIcon: Icon(Icons.assignment_rounded),
+            label: 'Tugas',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.view_week), label: 'Row'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.text_format),
-            label: 'RichText',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.image), label: 'Icon'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'CircleAvatar',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tugas 1'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tugas 2'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tugas 3'),
         ],
       ),
     );

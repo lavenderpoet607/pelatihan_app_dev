@@ -9,9 +9,14 @@ class LatihanWidgetIcon extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Belajar widget Icon'),
         backgroundColor: const Color.fromARGB(255, 236, 42, 227),
-        leading: const Icon(
-          Icons.arrow_back,
-          color: Color.fromARGB(255, 255, 255, 255),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: [
           Icon(
