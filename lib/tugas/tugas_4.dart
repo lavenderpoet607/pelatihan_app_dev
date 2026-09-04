@@ -67,10 +67,19 @@ class Tugas4 extends StatelessWidget {
             SizedBox(height: 10),
             const TextField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.location_city_outlined),
+                prefixIcon: Icon(Icons.key),
                 border: OutlineInputBorder(),
-                labelText: 'Address',
-                hintText: 'Enter Address',
+                labelText: 'Password',
+                hintText: 'Enter Password',
+              ),
+            ),
+            SizedBox(height: 10),
+            const TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.password),
+                border: OutlineInputBorder(),
+                labelText: 'Confirm Pasword',
+                hintText: 'Confirm Your Pasword',
               ),
             ),
             SizedBox(height: 30),
