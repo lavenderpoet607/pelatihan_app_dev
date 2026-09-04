@@ -110,7 +110,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       title: 'Latihan Single Child Scroll View',
       subtitle: 'Mengubah agar halaman bisa menjadi scrollable',
       icon: Icons.child_care_outlined,
-      color: Color.fromARGB(255, 211, 248, 1),
+      color: Color.fromARGB(255, 255, 0, 0),
       page: LatihanSinglechildscorollview(),
     ),
     AppMenuItem(
@@ -154,15 +154,15 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
     AppMenuItem(
       title: 'Tugas 4: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
-      icon: Icons.line_style_outlined,
-      color: Color.fromARGB(255, 82, 253, 14),
+      icon: Icons.input,
+      color: Color.fromARGB(255, 255, 3, 3),
       page: Tugas4(),
     ),
     AppMenuItem(
       title: 'Tugas 5: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
       icon: Icons.line_style_outlined,
-      color: Color.fromARGB(255, 82, 253, 14),
+      color: Color.fromARGB(255, 72, 255, 0),
       page: Tugas5(),
     ),
   ];
