@@ -14,11 +14,7 @@ class Tugas4 extends StatelessWidget {
           children: [
             Text(
               "Registrasi & Katalog",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-              ),
+              style: TextStyle(fontSize: 30, fontFamily: "Milky Cream"),
             ),
           ],
         ),

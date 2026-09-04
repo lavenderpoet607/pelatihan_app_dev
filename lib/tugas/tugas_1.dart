@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Tugas1 extends StatefulWidget {
@@ -15,12 +14,17 @@ class _Tugas1State extends State<Tugas1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profil Saya"),
+        title: const Text(
+          "Profil Saya",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Milky Cream",
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 235, 253, 135),
         actions: [
           IconButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             icon: Icon(Icons.view_headline, color: Colors.black),
           ),
         ],

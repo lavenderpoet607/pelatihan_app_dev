@@ -25,6 +25,7 @@ class Tugas2 extends StatelessWidget {
                 color: Color.fromRGBO(112, 196, 252, 1),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                fontFamily: "Milky Cream",
               ),
             ),
             Spacer(),
@@ -131,6 +132,7 @@ class Tugas2 extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildBulletPoint(String text) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

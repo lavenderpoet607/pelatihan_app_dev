@@ -17,7 +17,7 @@ class Tugas3 extends StatelessWidget {
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
+                fontFamily: "Milky Cream",
               ),
             ),
           ],
