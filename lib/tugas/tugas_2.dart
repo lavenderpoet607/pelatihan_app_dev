@@ -7,10 +7,14 @@ class Tugas2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.view_headline,
-          color: const Color.fromARGB(255, 7, 7, 7),
-          size: 30,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.view_headline,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +131,6 @@ class Tugas2 extends StatelessWidget {
       ),
     );
   }
-
   Widget _buildBulletPoint(String text) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_column.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_listview.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_row.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_textfield.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/tugas/tugas_1.dart';
 import 'package:pelatihan_app_dev/tugas/tugas_2.dart';
 import 'package:pelatihan_app_dev/tugas/tugas_3.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.dart';
+import 'package:pelatihan_app_dev/tugas/tugas_4.dart';
+import 'package:pelatihan_app_dev/tugas/tugas_5.dart';
 
 void main() {
   runApp(const MyApp());
@@ -101,6 +106,27 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       color: Colors.purple,
       page: LatihanWidgetCircleAvatar(),
     ),
+    AppMenuItem(
+      title: 'Latihan Single Child Scroll View',
+      subtitle: 'Mengubah agar halaman bisa menjadi scrollable',
+      icon: Icons.child_care_outlined,
+      color: Color.fromARGB(255, 211, 248, 1),
+      page: LatihanSinglechildscorollview(),
+    ),
+    AppMenuItem(
+      title: 'Latihan List View',
+      subtitle: 'Menjadikan Subjek menjadi list dalam view',
+      icon: Icons.line_style,
+      color: Color.fromARGB(255, 74, 145, 238),
+      page: LatihanListview(),
+    ),
+    AppMenuItem(
+      title: 'Latihan TextField',
+      subtitle: 'Menjadikan Subjek menjadi text yang bisa di input',
+      icon: Icons.text_fields,
+      color: Color.fromARGB(255, 74, 145, 238),
+      page: LatihanTextfield(),
+    ),
   ];
 
   static const List<AppMenuItem> _tugasItems = [
@@ -124,6 +150,20 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       icon: Icons.storefront_rounded,
       color: Colors.pinkAccent,
       page: Tugas3(),
+    ),
+    AppMenuItem(
+      title: 'Tugas 4: Form Input & Penataan Grid',
+      subtitle: 'Layouting Lanjutan',
+      icon: Icons.line_style_outlined,
+      color: Color.fromARGB(255, 82, 253, 14),
+      page: Tugas4(),
+    ),
+    AppMenuItem(
+      title: 'Tugas 5: ListView & ListTile',
+      subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
+      icon: Icons.line_style_outlined,
+      color: Color.fromARGB(255, 82, 253, 14),
+      page: Tugas5(),
     ),
   ];
 
