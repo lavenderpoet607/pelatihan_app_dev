@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Tugas1 extends StatefulWidget {
-  const Tugas1({super.key});
+class Tugas1Widget extends StatefulWidget {
+  const Tugas1Widget({super.key});
 
   @override
-  State<Tugas1> createState() {
-    return _Tugas1State();
+  State<Tugas1Widget> createState() {
+    return _Tugas1WidgetState();
   }
 }
 
-class _Tugas1State extends State<Tugas1> {
+class _Tugas1WidgetState extends State<Tugas1Widget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

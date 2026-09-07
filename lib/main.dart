@@ -7,12 +7,12 @@ import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_textfield.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
-import 'package:pelatihan_app_dev/tugas/tugas_1.dart';
-import 'package:pelatihan_app_dev/tugas/tugas_2.dart';
-import 'package:pelatihan_app_dev/tugas/tugas_3.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas_3.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.dart';
-import 'package:pelatihan_app_dev/tugas/tugas_4.dart';
-import 'package:pelatihan_app_dev/tugas/tugas_5.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_ListView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -131,39 +131,39 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   static const List<AppMenuItem> _tugasItems = [
     AppMenuItem(
-      title: 'Tugas 1: Profil Saya',
+      title: 'Tugas: Profil Saya',
       subtitle: 'Biodata diri, foto profil, dan info kontak',
       icon: Icons.person_rounded,
       color: Colors.amber,
-      page: Tugas1(),
+      page: Tugas1Widget(),
     ),
     AppMenuItem(
-      title: 'Tugas 2: Luminous News',
-      subtitle: 'Portal artikel & berita masa depan',
-      icon: Icons.newspaper_rounded,
-      color: Colors.cyan,
-      page: Tugas2(),
-    ),
-    AppMenuItem(
-      title: 'Tugas 3: Detail Toko',
+      title: 'Tugas: Layout Flutter Detail Toko',
       subtitle: 'Harumony Mystic Emporium - Toko buku',
       icon: Icons.storefront_rounded,
       color: Colors.pinkAccent,
-      page: Tugas3(),
+      page: Tugas2Layout(),
     ),
     AppMenuItem(
-      title: 'Tugas 4: Form Input & Penataan Grid',
+      title: 'Tugas: Luminous News',
+      subtitle: 'Portal artikel & berita masa depan',
+      icon: Icons.newspaper_rounded,
+      color: Colors.cyan,
+      page: Tugas3Lumi(),
+    ),
+    AppMenuItem(
+      title: 'Tugas: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
       icon: Icons.input,
       color: Color.fromARGB(255, 255, 3, 3),
-      page: Tugas4(),
+      page: Tugas3(),
     ),
     AppMenuItem(
-      title: 'Tugas 5: ListView & ListTile',
+      title: 'Tugas: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
       icon: Icons.line_style_outlined,
       color: Color.fromARGB(255, 72, 255, 0),
-      page: Tugas5(),
+      page: Tugas4(),
     ),
   ];
 
