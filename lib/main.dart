@@ -5,6 +5,7 @@ import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_row.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_textfield.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_stateful.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';
@@ -126,6 +127,13 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       icon: Icons.text_fields,
       color: Color.fromARGB(255, 74, 145, 238),
       page: LatihanTextfield(),
+    ),
+    AppMenuItem(
+      title: 'Latihan StatefulWidget',
+      subtitle: 'Belajar manajemen state dinamis & counter',
+      icon: Icons.touch_app_rounded,
+      color: Colors.blueAccent,
+      page: LatihanStateful(),
     ),
   ];
 
