@@ -1,5 +1,6 @@
 {
     "codexGhostText.model": "",
     "codexGhostText.triggerMode": "automatic",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "C_Cpp.errorSquiggles": "enabled"
 }

@@ -14,6 +14,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_ListView.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -142,36 +143,43 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       title: 'Tugas: Profil Saya',
       subtitle: 'Biodata diri, foto profil, dan info kontak',
       icon: Icons.person_rounded,
-      color: Colors.amber,
+      color: Color(0xFF6366F1), // Indigo
       page: Tugas1Widget(),
     ),
     AppMenuItem(
       title: 'Tugas: Layout Flutter Detail Toko',
       subtitle: 'Harumony Mystic Emporium - Toko buku',
       icon: Icons.storefront_rounded,
-      color: Colors.pinkAccent,
+      color: Color(0xFFEC4899), // Pink
       page: Tugas2Layout(),
     ),
     AppMenuItem(
       title: 'Tugas: Luminous News',
       subtitle: 'Portal artikel & berita masa depan',
       icon: Icons.newspaper_rounded,
-      color: Colors.cyan,
+      color: Color(0xFF06B6D4), // Cyan
       page: Tugas3Lumi(),
     ),
     AppMenuItem(
       title: 'Tugas: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
-      icon: Icons.input,
-      color: Color.fromARGB(255, 255, 3, 3),
+      icon: Icons.input_rounded,
+      color: Color(0xFFF97316), // Orange
       page: Tugas3(),
     ),
     AppMenuItem(
       title: 'Tugas: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
-      icon: Icons.line_style_outlined,
-      color: Color.fromARGB(255, 72, 255, 0),
+      icon: Icons.view_list_rounded,
+      color: Color(0xFF10B981), // Emerald
       page: Tugas4(),
+    ),
+    AppMenuItem(
+      title: 'Tugas: Event Handling',
+      subtitle: 'Interaksi Pengguna & Event Handling',
+      icon: Icons.event_rounded,
+      color: Color(0xFFF59E0B), // Amber
+      page: Tugas5(),
     ),
   ];
 

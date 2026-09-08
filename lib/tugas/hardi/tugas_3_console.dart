@@ -53,8 +53,9 @@ void main () { // Menampilkan output data yang diberikan
   for (var entry in buah.asMap().entries) { // Loop untuk menampilkan setiap buah dalam list
   int _ = entry.key; // Mengambil index dari setiap buah dalam list
   String _ = entry.value; // Mengambil nama buah dari setiap entry dalam list
- if (indexBuah > 1) 
-    break; // Jika indexBuah sama dengan 1, keluar dari loop
+ if (indexBuah > 1) {
+   break; // Jika indexBuah sama dengan 1, keluar dari loop
+ }
     print("Saya Suka Buah ${buah[indexBuah + 2]} & ${buah[indexBuah - 1]} dari ${buah.length} buah yaitu ${buah.join(", ")}"); 
     // Menampilkan nomor urut dan nama buah
   }
