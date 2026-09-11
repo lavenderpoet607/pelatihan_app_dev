@@ -13,28 +13,49 @@ import 'package:pelatihan_app_dev/tugas/ferry/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_ListView.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas_7_navigasi_drawer.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _CheckedSwitch = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pelatihan App Dev',
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFFF6F8FA),
         appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
       ),
-      home: const MultiWidgetApp(),
+
+      darkTheme: ThemeData.dark(useMaterial3: true),
+
+      themeMode: _CheckedSwitch ? ThemeMode.dark : ThemeMode.light,
+
+      home: MultiWidgetApp(
+        isDarkMode: _CheckedSwitch,
+        onThemeChanged: (bool value) {
+          setState(() {
+            _CheckedSwitch = value;
+          });
+        },
+      ),
     );
   }
 }
@@ -56,7 +77,14 @@ class AppMenuItem {
 }
 
 class MultiWidgetApp extends StatefulWidget {
-  const MultiWidgetApp({super.key});
+  final bool isDarkMode;
+  final ValueChanged<bool> onThemeChanged;
+
+  const MultiWidgetApp({
+    super.key,
+    required this.isDarkMode,
+    required this.onThemeChanged,
+  });
 
   @override
   State<MultiWidgetApp> createState() => _MultiWidgetAppState();
@@ -138,48 +166,58 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
     ),
   ];
 
-  static const List<AppMenuItem> _tugasItems = [
-    AppMenuItem(
+  List<AppMenuItem> get _tugasItems => <AppMenuItem>[
+    const AppMenuItem(
       title: 'Tugas: Profil Saya',
       subtitle: 'Biodata diri, foto profil, dan info kontak',
       icon: Icons.person_rounded,
       color: Color(0xFF6366F1), // Indigo
       page: Tugas1Widget(),
     ),
-    AppMenuItem(
+    const AppMenuItem(
       title: 'Tugas: Layout Flutter Detail Toko',
       subtitle: 'Harumony Mystic Emporium - Toko buku',
       icon: Icons.storefront_rounded,
       color: Color(0xFFEC4899), // Pink
       page: Tugas2Layout(),
     ),
-    AppMenuItem(
+    const AppMenuItem(
       title: 'Tugas: Luminous News',
       subtitle: 'Portal artikel & berita masa depan',
       icon: Icons.newspaper_rounded,
       color: Color(0xFF06B6D4), // Cyan
       page: Tugas3Lumi(),
     ),
-    AppMenuItem(
+    const AppMenuItem(
       title: 'Tugas: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
       icon: Icons.input_rounded,
       color: Color(0xFFF97316), // Orange
       page: Tugas3(),
     ),
-    AppMenuItem(
+    const AppMenuItem(
       title: 'Tugas: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
       icon: Icons.view_list_rounded,
       color: Color(0xFF10B981), // Emerald
       page: Tugas4(),
     ),
-    AppMenuItem(
+    const AppMenuItem(
       title: 'Tugas: Event Handling',
       subtitle: 'Interaksi Pengguna & Event Handling',
       icon: Icons.event_rounded,
       color: Color(0xFFF59E0B), // Amber
       page: Tugas5(),
+    ),
+    AppMenuItem(
+      title: 'Tugas: Form Input',
+      subtitle: 'Interaktif dengan Navigasi Drawer',
+      icon: Icons.text_format_rounded,
+      color: const Color(0xFFF59E0B), // Amber
+      page: Tugas7(
+        onThemeChanged: widget.onThemeChanged,
+        isDarkMode: widget.isDarkMode,
+      ),
     ),
   ];
 
@@ -288,7 +326,19 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 dense: true,
                 onTap: () {
                   Navigator.pop(context);
-                  _navigateTo(item.page);
+                  if (item.title == 'Tugas: Form Input') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => Tugas7(
+                          isDarkMode: widget.isDarkMode,
+                          onThemeChanged: widget.onThemeChanged,
+                        ),
+                      ),
+                    );
+                  } else {
+                    _navigateTo(item.page);
+                  }
                 },
               ),
             ),
