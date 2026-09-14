@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_bottom_navigator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_drawer.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_column.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_listview.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi.dart';
@@ -17,6 +19,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas_8.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +33,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _checkedSwitch = false;
+  bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,32 +47,41 @@ class _MyAppState extends State<MyApp> {
         appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
       ),
       darkTheme: ThemeData.dark(useMaterial3: true),
-      themeMode: _checkedSwitch ? ThemeMode.dark : ThemeMode.light,
+      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: MultiWidgetApp(
-        isDarkMode: _checkedSwitch,
+        isDarkMode: _isDarkMode,
         onThemeChanged: (bool value) {
           setState(() {
-            _checkedSwitch = value;
+            _isDarkMode = value;
           });
         },
       ),
       routes: {
         '/home': (context) => MultiWidgetApp(
-          isDarkMode: _checkedSwitch,
+          isDarkMode: _isDarkMode,
           onThemeChanged: (bool value) {
             setState(() {
-              _checkedSwitch = value;
+              _isDarkMode = value;
             });
           },
         ),
         '/latihan_navigasi': (context) => const LatihanNavigasi(),
+        '/latihan_drawer': (context) => const LatihanDrawer(),
         '/tujuan_navigasi': (context) =>
             const HalamanTujuanNavigasi(metode: 'pushNamed'),
         '/tugas7': (context) => Tugas7(
-          isDarkMode: _checkedSwitch,
+          isDarkMode: _isDarkMode,
           onThemeChanged: (bool value) {
             setState(() {
-              _checkedSwitch = value;
+              _isDarkMode = value;
+            });
+          },
+        ),
+        '/tugas8': (context) => Tugas8(
+          isDarkMode: _isDarkMode,
+          onThemeChanged: (bool value) {
+            setState(() {
+              _isDarkMode = value;
             });
           },
         ),
@@ -113,6 +125,22 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   void _navigateTo(Widget page) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+  }
+
+  void _navPushNamed(String routeName) {
+    Navigator.pushNamed(context, routeName);
+  }
+
+  void _navPushReplacement(Widget page) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
+  }
+
+  void _navPushAndRemoveUntil(Widget page) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => page),
+      (route) => false,
+    );
   }
 
   static const List<AppMenuItem> _latihanItems = [
@@ -187,6 +215,20 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       page: LatihanStateful(),
     ),
     AppMenuItem(
+      title: 'Latihan Bottom Navigator',
+      subtitle: 'Belajar Bottom Navigator',
+      icon: Icons.navigation,
+      color: Colors.deepPurple,
+      page: LatihanBottomNavigator(),
+    ),
+    AppMenuItem(
+      title: 'Latihan Drawer',
+      subtitle: 'Belajar navigasi drawer dengan UserAccountsDrawerHeader',
+      icon: Icons.menu_open_rounded,
+      color: Colors.blue,
+      page: LatihanDrawer(),
+    ),
+    AppMenuItem(
       title: 'Latihan Navigasi',
       subtitle: 'Belajar 4 metode navigasi: push, pushNamed, pushReplacement, pushAndRemoveUntil',
       icon: Icons.alt_route_rounded,
@@ -248,6 +290,16 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
         isDarkMode: widget.isDarkMode,
       ),
     ),
+    AppMenuItem(
+      title: 'Tugas: Navigasi Bawah (Bottom Nav)',
+      subtitle: 'Tugas 8: BottomNavigationBar & Conditional Drawer (Ridho)',
+      icon: Icons.tab_rounded,
+      color: const Color(0xFF0284C7),
+      page: Tugas8(
+        onThemeChanged: widget.onThemeChanged,
+        isDarkMode: widget.isDarkMode,
+      ),
+    ),
   ];
 
   @override
@@ -256,6 +308,11 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
     final currentTitle = _currentIndex == 0
         ? 'Latihan Widget'
         : 'Tugas Mandiri';
+
+    final tugas7Page = Tugas7(
+      onThemeChanged: widget.onThemeChanged,
+      isDarkMode: widget.isDarkMode,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -351,7 +408,11 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 dense: true,
                 onTap: () {
                   Navigator.pop(context);
-                  _navigateTo(item.page);
+                  if (item.title == 'Tugas: Form Input') {
+                    _navPushNamed('/tugas7');
+                  } else {
+                    _navigateTo(item.page);
+                  }
                 },
               ),
             ),
@@ -363,63 +424,19 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
         itemCount: currentList.length,
         itemBuilder: (context, index) {
           final item = currentList[index];
-          return Card(
-            elevation: 0,
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Colors.grey.shade200),
-            ),
-            margin: const EdgeInsets.only(bottom: 12),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16),
-              onTap: () => _navigateTo(item.page),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: item.color.withAlpha(30),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(item.icon, color: item.color, size: 26),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            item.title,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.subtitle,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 16,
-                      color: Colors.grey.shade400,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+
+          // Pada tab latihan, item pertama menampilkan demo 4 metode navigasi.
+          if (_currentIndex == 0 && index == 0) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildNavigationDemoCard(tugas7Page),
+                _buildMenuItemCard(item),
+              ],
+            );
+          }
+
+          return _buildMenuItemCard(item);
         },
       ),
       bottomNavigationBar: NavigationBar(
@@ -441,6 +458,202 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
             label: 'Tugas',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildMenuItemCard(AppMenuItem item) {
+    return Card(
+      elevation: 0,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: Colors.grey.shade200),
+      ),
+      margin: const EdgeInsets.only(bottom: 12),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          if (item.title == 'Tugas: Form Input') {
+            _navPushNamed('/tugas7');
+          } else {
+            _navigateTo(item.page);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: item.color.withAlpha(30),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(item.icon, color: item.color, size: 26),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      item.subtitle,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 16,
+                color: Colors.grey.shade400,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavigationDemoCard(Widget tugas7Page) {
+    return Card(
+      elevation: 0,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: Colors.blue.shade100, width: 1.5),
+      ),
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.alt_route_rounded,
+                    color: Colors.blueAccent,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '4 Metode Navigasi',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        'Uji navigasi ke Tugas 7 dalam satu halaman',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+            ElevatedButton.icon(
+              onPressed: () => _navigateTo(tugas7Page),
+              icon: const Icon(Icons.arrow_forward, size: 16),
+              label: const Text('push', style: TextStyle(fontSize: 12)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton.icon(
+              onPressed: () => _navPushNamed('/tugas7'),
+              icon: const Icon(Icons.link, size: 16),
+              label: const Text('pushNamed', style: TextStyle(fontSize: 12)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton.icon(
+              onPressed: () => _navPushReplacement(tugas7Page),
+              icon: const Icon(Icons.swap_horiz, size: 16),
+              label: const Text(
+                'pushReplacement',
+                style: TextStyle(fontSize: 11),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.teal,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton.icon(
+              onPressed: () => _navPushAndRemoveUntil(tugas7Page),
+              icon: const Icon(Icons.clear_all, size: 16),
+              label: const Text(
+                'pushAndRemoveUntil',
+                style: TextStyle(fontSize: 10),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepOrange,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 2,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

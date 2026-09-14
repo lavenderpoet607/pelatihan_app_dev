@@ -89,8 +89,9 @@ class _Tugas5State extends State<Tugas5> {
                   print("Sentuhan terdeteksi");
                 },
                 child: Container(
-                  width: 380,
+                  width: double.infinity,
                   height: 150,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(12),
@@ -98,8 +99,9 @@ class _Tugas5State extends State<Tugas5> {
                   child: Center(
                     child: Text(
                       "Sentuh kotak ini",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontFamily: "Milky Cream",
@@ -145,8 +147,9 @@ class _Tugas5State extends State<Tugas5> {
                   print("Sentuhan terdeteksi : $_angka");
                 },
                 child: Container(
-                  width: 380,
+                  width: double.infinity,
                   height: 150,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(100),
@@ -154,8 +157,9 @@ class _Tugas5State extends State<Tugas5> {
                   child: Center(
                     child: Text(
                       "Angka : $_angka",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -175,6 +179,7 @@ class _Tugas5State extends State<Tugas5> {
             SizedBox(height: 10),
             Text(
               "• Tap = +1 \n • Double Tap = +2 \n • Long Press = +3",
+              textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
           ],

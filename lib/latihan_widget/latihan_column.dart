@@ -11,14 +11,17 @@ class LatihanColumn extends StatelessWidget {
         title: const Text('Belajar widget Column'),
         foregroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
-      body: Column(
-        children: [
-          Text('Hallo text ini berada di baris pertama'),
-          Text('Hallo text ini berada di baris kedua'),
-          Text('Hallo text ini berada di baris ketiga'),
-          Text('Hallo text ini berada di baris keempat'),
-          Text('Hallo text ini berada di baris kelima'),
-        ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Text('Hallo text ini berada di baris pertama'),
+            Text('Hallo text ini berada di baris kedua'),
+            Text('Hallo text ini berada di baris ketiga'),
+            Text('Hallo text ini berada di baris keempat'),
+            Text('Hallo text ini berada di baris kelima'),
+          ],
+        ),
       ),
     );
   }

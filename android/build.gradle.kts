@@ -1,16 +1,7 @@
-import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.jvm.toolchain.JavaLanguageVersion
-
 allprojects {
     repositories {
         google()
         mavenCentral()
-    }
-
-    extensions.configure<JavaPluginExtension> {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
     }
 }
 

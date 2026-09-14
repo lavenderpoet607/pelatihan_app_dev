@@ -9,14 +9,10 @@ class Tugas3 extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 64, 64),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Registrasi & Katalog",
-              style: TextStyle(fontSize: 30, fontFamily: "Milky Cream"),
-            ),
-          ],
+        title: const Text(
+          "Registrasi & Katalog",
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 22, fontFamily: "Milky Cream"),
         ),
       ),
       body: SingleChildScrollView(

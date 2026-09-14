@@ -29,7 +29,7 @@ class _Tugas1WidgetState extends State<Tugas1Widget> {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,24 +42,27 @@ class _Tugas1WidgetState extends State<Tugas1Widget> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Nama: Ridho Dibaja Tawang',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.location_on),
-                SizedBox(width: 10),
-                Text(
-                  'Alamat: Jl. Kebon Sayur 1 BidacaraCina',
-                  style: TextStyle(fontSize: 18),
+                const Icon(Icons.location_on),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'Alamat: Jl. Kebon Sayur 1 BidacaraCina',
+                    style: const TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Deskripsi: Bermain Game, Membaca Buku, dan Menulis',
               style: TextStyle(fontSize: 18),
             ),

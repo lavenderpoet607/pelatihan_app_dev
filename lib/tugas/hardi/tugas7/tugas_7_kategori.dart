@@ -44,49 +44,44 @@ class _Tugas7KategoriState extends State<Tugas7Kategori> {
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Kategori Produk",
-                style: TextStyle(
-                  fontFamily: "Milky Cream",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Kategori Produk",
+              style: TextStyle(
+                fontFamily: "Milky Cream",
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
-              const SizedBox(height: 20),
-              DropdownButton<String>(
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple, fontSize: 16),
-                underline: Container(height: 2, color: Colors.deepPurpleAccent),
-                onChanged: (String? value) {
-                  setState(() {
-                    dropdownValue = value ?? list.first;
-                  });
-                },
-                items: list.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Anda memilih kategori: $dropdownValue",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            DropdownButton<String>(
+              value: dropdownValue,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple, fontSize: 16),
+              underline: Container(height: 2, color: Colors.deepPurpleAccent),
+              onChanged: (String? value) {
+                setState(() {
+                  dropdownValue = value ?? list.first;
+                });
+              },
+              items: list.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              "Anda memilih kategori: $dropdownValue",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ],
         ),
       ),
     );

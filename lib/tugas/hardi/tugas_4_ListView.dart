@@ -9,18 +9,14 @@ class Tugas4 extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 64, 64),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "ListView & ListTile",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Milky Cream",
-              ),
-            ),
-          ],
+        title: const Text(
+          "ListView & ListTile",
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Milky Cream",
+          ),
         ),
       ),
       body: ListView(

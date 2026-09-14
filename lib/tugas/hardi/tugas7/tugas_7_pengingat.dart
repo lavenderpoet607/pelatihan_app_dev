@@ -51,42 +51,38 @@ class _Tugas7PengingatState extends State<Tugas7Pengingat> {
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Waktu Pengingat",
-                style: TextStyle(
-                  fontFamily: "Milky Cream",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Waktu Pengingat",
+              style: TextStyle(
+                fontFamily: "Milky Cream",
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
-              const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () => _selectTime(context),
-                icon: const Icon(Icons.access_time),
-                label: const Text("Pilih Jam & Menit"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 248, 72, 160),
-                  foregroundColor: Colors.white,
-                ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () => _selectTime(context),
+              icon: const Icon(Icons.access_time),
+              label: const Text("Pilih Jam & Menit"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 248, 72, 160),
+                foregroundColor: Colors.white,
               ),
-              const SizedBox(height: 20),
-              Text(
-                selectedTime == null
-                    ? "Belum ada waktu pengingat"
-                    : "Pengingat diatur pukul: ${selectedTime!.format(context)}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              selectedTime == null
+                  ? "Belum ada waktu pengingat"
+                  : "Pengingat diatur pukul: ${selectedTime!.format(context)}",
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ],
         ),
       ),
     );

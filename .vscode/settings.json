@@ -3,5 +3,6 @@
     "codexGhostText.triggerMode": "automatic",
     "cmake.ignoreCMakeListsMissing": true,
     "C_Cpp.errorSquiggles": "enabled",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "CodeGPT.apiKey": "CodeGPT Plus"
 }

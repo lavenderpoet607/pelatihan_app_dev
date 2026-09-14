@@ -10,14 +10,30 @@ class LatihanRow extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 252, 252, 252),
         title: const Text('Belajar widget Row'),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: 100),
-          Text('Ini text widget kiri', style: TextStyle(color: Colors.black)),
-          Text('Ini text widget tengah', style: TextStyle(color: Colors.black)),
-          Text('Ini text widget kanan', style: TextStyle(color: Colors.black)),
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Ini text widget kiri',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Ini text widget tengah',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Ini text widget kanan',
+                style: TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -38,9 +38,9 @@ class _LatihanStatefulState extends State<LatihanStateful> {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -74,8 +74,10 @@ class _LatihanStatefulState extends State<LatihanStateful> {
                 ),
               ),
               const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 12,
+                runSpacing: 12,
                 children: [
                   ElevatedButton.icon(
                     onPressed: _kurang,
@@ -90,7 +92,6 @@ class _LatihanStatefulState extends State<LatihanStateful> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
                   ElevatedButton.icon(
                     onPressed: _reset,
                     icon: const Icon(Icons.refresh),
@@ -104,7 +105,6 @@ class _LatihanStatefulState extends State<LatihanStateful> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
                   ElevatedButton.icon(
                     onPressed: _tambah,
                     icon: const Icon(Icons.add),

@@ -53,40 +53,36 @@ class _Tugas7TanggalLahirState extends State<Tugas7TanggalLahir> {
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Pilih Tanggal Lahir",
-                style: TextStyle(
-                  fontFamily: "Milky Cream",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Pilih Tanggal Lahir",
+              style: TextStyle(
+                fontFamily: "Milky Cream",
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
-              const SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () => _selectDate(context),
-                icon: const Icon(Icons.calendar_today),
-                label: const Text("Buka Kalender"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 248, 72, 160),
-                  foregroundColor: Colors.white,
-                ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () => _selectDate(context),
+              icon: const Icon(Icons.calendar_today),
+              label: const Text("Buka Kalender"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 248, 72, 160),
+                foregroundColor: Colors.white,
               ),
-              const SizedBox(height: 20),
-              Text(
-                "Tanggal Lahir: ${selectedDate.toLocal().toString().split(' ')[0]}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              "Tanggal Lahir: ${selectedDate.toLocal().toString().split(' ')[0]}",
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ],
         ),
       ),
     );

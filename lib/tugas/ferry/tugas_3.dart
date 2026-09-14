@@ -19,16 +19,18 @@ class Tugas3Lumi extends StatelessWidget {
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Luminous News",
-              style: TextStyle(
-                color: Color.fromRGBO(112, 196, 252, 1),
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Milky Cream",
+            Expanded(
+              child: Text(
+                "Luminous News",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Color.fromRGBO(112, 196, 252, 1),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Milky Cream",
+                ),
               ),
             ),
-            Spacer(),
             CircleAvatar(
               radius: 18,
               backgroundImage: NetworkImage(
@@ -49,7 +51,7 @@ class Tugas3Lumi extends StatelessWidget {
             const Text(
               'Masa Depan Energi Terbarukan: Inovasi EcoSync di Tahun 2024',
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 height: 1.3,
                 fontStyle: FontStyle.italic,

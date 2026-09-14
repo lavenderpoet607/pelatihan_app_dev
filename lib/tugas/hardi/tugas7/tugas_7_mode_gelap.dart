@@ -38,39 +38,34 @@ class _Tugas7ModeGelapState extends State<Tugas7ModeGelap> {
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Mode Tampilan",
-                style: TextStyle(
-                  fontFamily: "Milky Cream",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Mode Tampilan",
+              style: TextStyle(
+                fontFamily: "Milky Cream",
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
-              const SizedBox(height: 20),
-              SwitchListTile(
-                value: isDark,
-                onChanged: (bool value) {
-                  widget.onThemeChanged(value);
-                },
-                title: const Text("Aktifkan Mode Gelap"),
-                secondary: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                isDark ? "Mode Gelap Aktif" : "Mode Terang Aktif",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            SwitchListTile(
+              value: isDark,
+              onChanged: (bool value) {
+                widget.onThemeChanged(value);
+              },
+              title: const Text("Aktifkan Mode Gelap"),
+              secondary: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              isDark ? "Mode Gelap Aktif" : "Mode Terang Aktif",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ],
         ),
       ),
     );

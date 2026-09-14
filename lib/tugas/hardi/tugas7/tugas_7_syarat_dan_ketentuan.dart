@@ -38,46 +38,44 @@ class _Tugas7State extends State<Tugas7> {
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Syarat & Ketentuan",
-                style: TextStyle(
-                  fontFamily: "Milky Cream",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Syarat & Ketentuan",
+              style: TextStyle(
+                fontFamily: "Milky Cream",
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
-              const SizedBox(height: 16),
-              CheckboxListTile(
-                value: _isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    _isChecked = value ?? false;
-                  });
-                },
-                title: const Text(
-                  "Saya menyetujui semua persyaratan yang berlaku",
-                ),
-                controlAffinity: ListTileControlAffinity.leading,
+            ),
+            const SizedBox(height: 16),
+            CheckboxListTile(
+              value: _isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  _isChecked = value ?? false;
+                });
+              },
+              title: const Text(
+                "Saya menyetujui semua persyaratan yang berlaku",
               ),
-              const SizedBox(height: 16),
-              Text(
-                _isChecked
-                    ? "Lanjutkan pendaftaran diperbolehkan"
-                    : "Anda belum bisa melanjutkan",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: _isChecked ? Colors.green : Colors.red,
-                ),
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              _isChecked
+                  ? "Lanjutkan pendaftaran diperbolehkan"
+                  : "Anda belum bisa melanjutkan",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: _isChecked ? Colors.green : Colors.red,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

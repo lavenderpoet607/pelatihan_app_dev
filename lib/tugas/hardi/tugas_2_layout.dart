@@ -9,18 +9,14 @@ class Tugas2Layout extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 243, 196, 252),
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "DETAIL TOKO",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Milky Cream",
-              ),
-            ),
-          ],
+        title: const Text(
+          "DETAIL TOKO",
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Milky Cream",
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -61,15 +57,35 @@ class Tugas2Layout extends StatelessWidget {
                 ],
               ),
             ),
-            const Row(
-              children: [
-                Icon(Icons.phone, color: Colors.black, size: 18),
-                SizedBox(width: 15),
-                Text('081311685803', style: TextStyle(fontSize: 15)),
-                Spacer(),
-                Icon(Icons.location_on, color: Colors.black, size: 18),
-                Text('Jakarta, Indonesia', style: TextStyle(fontSize: 15)),
-              ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 15,
+                runSpacing: 8,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.phone, color: Colors.black, size: 18),
+                      SizedBox(width: 15),
+                      Text('081311685803', style: TextStyle(fontSize: 15)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.location_on, color: Colors.black, size: 18),
+                      SizedBox(width: 6),
+                      Text(
+                        'Jakarta, Indonesia',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 40),
             Row(
