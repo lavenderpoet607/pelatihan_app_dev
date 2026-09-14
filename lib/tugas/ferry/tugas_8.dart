@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_drawer.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_kategori.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_mode_gelap.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_pengingat.dart';
@@ -318,7 +317,7 @@ class _Tugas8State extends State<Tugas8> {
 
                   // Pilih Kategori (Dropdown)
                   DropdownButtonFormField<String>(
-                    value: _kategori,
+                    initialValue: _kategori,
                     decoration: InputDecoration(
                       labelText: "Pilih Kategori Produk",
                       prefixIcon: const Icon(Icons.category),
