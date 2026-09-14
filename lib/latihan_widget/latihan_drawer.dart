@@ -10,19 +10,15 @@ class LatihanDrawer extends StatefulWidget {
 }
 
 class _LatihanDrawerState extends State<LatihanDrawer> {
-  // Indeks halaman aktif saat ini
   int _selectedIndex = 0;
 
-  // Daftar judul untuk AppBar berdasarkan halaman aktif
   final List<String> _titles = ['Halaman Circle Avatar', 'Halaman Grid view'];
 
-  // Daftar widget halaman tujuan
   final List<Widget> _pages = [
     const LatihanCircleavatar(),
     const LatihanGridview(),
   ];
 
-  // Fungsi untuk mengubah halaman aktif
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -35,7 +31,7 @@ class _LatihanDrawerState extends State<LatihanDrawer> {
       appBar: AppBar(
         title: Text(_titles[_selectedIndex]),
         backgroundColor: Colors.blue,
-      ), // AppBar
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -48,34 +44,32 @@ class _LatihanDrawerState extends State<LatihanDrawer> {
                 child: Text(
                   "B",
                   style: TextStyle(fontSize: 40.0, color: Colors.blue),
-                ), // Text
-              ), // CircleAvatar
+                ),
+              ),
               decoration: BoxDecoration(color: Colors.blue),
-            ), // UserAccountsDrawerHeader
-            // Menu 1: Beranda
+            ),
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Latihan Icon Avatar'),
-              selected: _selectedIndex == 0, // Highlight jika menu ini aktif
+              selected: _selectedIndex == 0,
               onTap: () {
-                _onItemTapped(0); // Pindah ke indeks 0
-                Navigator.pop(context); // Menutup Drawer setelah diklik
+                _onItemTapped(0);
+                Navigator.pop(context);
               },
-            ), // ListTile
-            // Menu 2: Pengaturan
+            ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Latihan Grid View'),
-              selected: _selectedIndex == 1, // Highlight jika menu ini aktif
+              selected: _selectedIndex == 1,
               onTap: () {
-                _onItemTapped(1); // Pindah ke indeks 1
-                Navigator.pop(context); // Menutup Drawer setelah diklik
+                _onItemTapped(1);
+                Navigator.pop(context);
               },
-            ), // ListTile
+            ),
           ],
-        ), // ListView
-      ), // Drawer
+        ),
+      ),
       body: _pages[_selectedIndex],
-    ); // Scaffold
+    );
   }
 }

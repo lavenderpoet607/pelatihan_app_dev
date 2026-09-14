@@ -20,6 +20,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_8.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas_9.dart';
 
 void main() {
   runApp(const MyApp());
@@ -85,6 +86,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
         ),
+        '/tugas9': (context) => const Tugas9(),
       },
     );
   }
@@ -292,13 +294,20 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
     ),
     AppMenuItem(
       title: 'Tugas: Navigasi Bawah (Bottom Nav)',
-      subtitle: 'Tugas 8: BottomNavigationBar & Conditional Drawer (Ridho)',
+      subtitle: 'BottomNavigationBar & Conditional Drawer (Ridho)',
       icon: Icons.tab_rounded,
       color: const Color(0xFF0284C7),
       page: Tugas8(
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
+    ),
+    const AppMenuItem(
+      title: 'Tugas: Daftar Kategori',
+      subtitle: 'ListView.builder: List, Map, dan Model',
+      icon: Icons.list_alt_rounded,
+      color: Color(0xFF10B981),
+      page: Tugas9(),
     ),
   ];
 
@@ -424,8 +433,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
         itemCount: currentList.length,
         itemBuilder: (context, index) {
           final item = currentList[index];
-
-          // Pada tab latihan, item pertama menampilkan demo 4 metode navigasi.
           if (_currentIndex == 0 && index == 0) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

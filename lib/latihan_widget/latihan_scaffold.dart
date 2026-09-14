@@ -12,8 +12,6 @@ class LatihanScaffold extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          // Ukuran kotak menyesuaikan ruang yang tersedia agar tidak overflow
-          // saat layar diputar (landscape).
           final boxSize = constraints.maxHeight * 0.5;
           final size = boxSize.clamp(0.0, 200.0);
           return SingleChildScrollView(
@@ -31,10 +29,7 @@ class LatihanScaffold extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: Colors.deepPurple, // Border color
-                        width: 3, // Border thickness
-                      ),
+                      border: Border.all(color: Colors.deepPurple, width: 3),
                     ),
                     child: const Center(child: Text('JMK 48')),
                   ),

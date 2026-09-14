@@ -18,7 +18,6 @@ class Tugas8 extends StatefulWidget {
 class _Tugas8State extends State<Tugas8> {
   int _currentIndex = 0;
 
-  // State untuk form input Tugas 7 pada tab Home
   bool _isChecked = false;
   String _kategori = 'Elektronik';
   DateTime? _tanggalLahir;
@@ -82,9 +81,7 @@ class _Tugas8State extends State<Tugas8> {
         foregroundColor: Colors.white,
         elevation: 1,
       ),
-      // Drawer HANYA aktif saat tab Home (_currentIndex == 0).
-      // Saat tab Tentang Aplikasi (_currentIndex == 1), drawer bernilai null
-      // sehingga hamburger button hilang dan gesture swipe dinonaktifkan.
+
       drawer: _currentIndex == 0 ? _buildDrawer(context) : null,
       body: _currentIndex == 0
           ? _buildHomeTab(context)
@@ -114,7 +111,6 @@ class _Tugas8State extends State<Tugas8> {
     );
   }
 
-  /// Drawer navigasi khusus tab Home
   Widget _buildDrawer(BuildContext context) {
     return Drawer(
       child: ListView(
@@ -129,14 +125,14 @@ class _Tugas8State extends State<Tugas8> {
               ),
             ),
             accountName: const Text(
-              "Ridho (Tugas 8)",
+              "Ferry (Tugas 8)",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            accountEmail: const Text("Ridho.developer@pelatihan.dev"),
+            accountEmail: const Text("ferry.developer@pelatihan.dev"),
             currentAccountPicture: const CircleAvatar(
               backgroundColor: Colors.white,
               child: Text(
-                "R",
+                "F",
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
@@ -243,14 +239,12 @@ class _Tugas8State extends State<Tugas8> {
     );
   }
 
-  /// Tampilan Tab 1: Home (Form Input Tugas 7 dengan Drawer aktif)
   Widget _buildHomeTab(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Banner Penjelasan Drawer Aktif
           Container(
             padding: const EdgeInsets.all(14.0),
             decoration: BoxDecoration(
@@ -276,7 +270,6 @@ class _Tugas8State extends State<Tugas8> {
           ),
           const SizedBox(height: 16),
 
-          // Kartu Form Input Lengkap Tugas 7
           Card(
             elevation: 1.5,
             shape: RoundedRectangleBorder(
@@ -298,7 +291,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 14),
 
-                  // Input Nama
                   TextField(
                     controller: _namaController,
                     decoration: InputDecoration(
@@ -315,7 +307,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 14),
 
-                  // Pilih Kategori (Dropdown)
                   DropdownButtonFormField<String>(
                     initialValue: _kategori,
                     decoration: InputDecoration(
@@ -345,7 +336,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 14),
 
-                  // Tanggal Lahir (DatePicker)
                   InkWell(
                     onTap: () => _pilihTanggal(context),
                     borderRadius: BorderRadius.circular(10),
@@ -375,7 +365,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 14),
 
-                  // Pengingat (TimePicker)
                   InkWell(
                     onTap: () => _pilihWaktu(context),
                     borderRadius: BorderRadius.circular(10),
@@ -405,7 +394,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Syarat dan Ketentuan (Checkbox)
                   CheckboxListTile(
                     contentPadding: EdgeInsets.zero,
                     value: _isChecked,
@@ -421,7 +409,6 @@ class _Tugas8State extends State<Tugas8> {
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
 
-                  // Status Persetujuan
                   Text(
                     _isChecked
                         ? "✓ Syarat & Ketentuan telah disetujui"
@@ -434,7 +421,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Tombol Simpan
                   ElevatedButton.icon(
                     onPressed: () {
                       final nama = _namaController.text.trim();
@@ -478,7 +464,6 @@ class _Tugas8State extends State<Tugas8> {
           ),
           const SizedBox(height: 16),
 
-          // Tombol Buka Drawer Langsung
           OutlinedButton.icon(
             onPressed: () {
               Scaffold.of(context).openDrawer();
@@ -499,14 +484,12 @@ class _Tugas8State extends State<Tugas8> {
     );
   }
 
-  /// Tampilan Tab 2: Tentang Aplikasi (Drawer NON-AKTIF)
   Widget _buildTentangAplikasiTab(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Banner Drawer Dinonaktifkan
           Container(
             padding: const EdgeInsets.all(14.0),
             decoration: BoxDecoration(
@@ -533,7 +516,6 @@ class _Tugas8State extends State<Tugas8> {
           ),
           const SizedBox(height: 20),
 
-          // Header Logo & Judul Aplikasi
           Center(
             child: Column(
               children: [
@@ -576,7 +558,6 @@ class _Tugas8State extends State<Tugas8> {
           ),
           const SizedBox(height: 24),
 
-          // Card Informasi Lengkap
           Card(
             elevation: 1.5,
             shape: RoundedRectangleBorder(
@@ -587,7 +568,6 @@ class _Tugas8State extends State<Tugas8> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Penjelasan Singkat
                   const Text(
                     "Penjelasan Singkat",
                     style: TextStyle(
@@ -609,16 +589,14 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const Divider(height: 32),
 
-                  // Nama Pembuat
                   _buildInfoRow(
                     icon: Icons.person_rounded,
                     color: Colors.indigo,
                     label: "Nama Pembuat",
-                    value: "Ridho",
+                    value: "Ferry",
                   ),
                   const SizedBox(height: 16),
 
-                  // Peran / Status
                   _buildInfoRow(
                     icon: Icons.school_rounded,
                     color: Colors.teal,
@@ -627,7 +605,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Versi Aplikasi
                   _buildInfoRow(
                     icon: Icons.verified_rounded,
                     color: Colors.orange,
@@ -636,7 +613,6 @@ class _Tugas8State extends State<Tugas8> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Framework
                   _buildInfoRow(
                     icon: Icons.flutter_dash,
                     color: Colors.blueAccent,
@@ -649,7 +625,6 @@ class _Tugas8State extends State<Tugas8> {
           ),
           const SizedBox(height: 20),
 
-          // Card Rangkuman Fitur
           Card(
             elevation: 1.5,
             shape: RoundedRectangleBorder(
