@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_column.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_listview.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_row.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
@@ -15,7 +16,7 @@ import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_7_navigasi_drawer.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,33 +30,50 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _CheckedSwitch = false;
+  bool _checkedSwitch = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pelatihan App Dev',
       debugShowCheckedModeBanner: false,
-
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFFF6F8FA),
         appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
       ),
-
       darkTheme: ThemeData.dark(useMaterial3: true),
-
-      themeMode: _CheckedSwitch ? ThemeMode.dark : ThemeMode.light,
-
+      themeMode: _checkedSwitch ? ThemeMode.dark : ThemeMode.light,
       home: MultiWidgetApp(
-        isDarkMode: _CheckedSwitch,
+        isDarkMode: _checkedSwitch,
         onThemeChanged: (bool value) {
           setState(() {
-            _CheckedSwitch = value;
+            _checkedSwitch = value;
           });
         },
       ),
+      routes: {
+        '/home': (context) => MultiWidgetApp(
+          isDarkMode: _checkedSwitch,
+          onThemeChanged: (bool value) {
+            setState(() {
+              _checkedSwitch = value;
+            });
+          },
+        ),
+        '/latihan_navigasi': (context) => const LatihanNavigasi(),
+        '/tujuan_navigasi': (context) =>
+            const HalamanTujuanNavigasi(metode: 'pushNamed'),
+        '/tugas7': (context) => Tugas7(
+          isDarkMode: _checkedSwitch,
+          onThemeChanged: (bool value) {
+            setState(() {
+              _checkedSwitch = value;
+            });
+          },
+        ),
+      },
     );
   }
 }
@@ -92,6 +110,10 @@ class MultiWidgetApp extends StatefulWidget {
 
 class _MultiWidgetAppState extends State<MultiWidgetApp> {
   int _currentIndex = 0;
+
+  void _navigateTo(Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+  }
 
   static const List<AppMenuItem> _latihanItems = [
     AppMenuItem(
@@ -164,6 +186,13 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       color: Colors.blueAccent,
       page: LatihanStateful(),
     ),
+    AppMenuItem(
+      title: 'Latihan Navigasi',
+      subtitle: 'Belajar 4 metode navigasi: push, pushNamed, pushReplacement, pushAndRemoveUntil',
+      icon: Icons.alt_route_rounded,
+      color: Colors.deepPurple,
+      page: LatihanNavigasi(),
+    ),
   ];
 
   List<AppMenuItem> get _tugasItems => <AppMenuItem>[
@@ -171,59 +200,55 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       title: 'Tugas: Profil Saya',
       subtitle: 'Biodata diri, foto profil, dan info kontak',
       icon: Icons.person_rounded,
-      color: Color(0xFF6366F1), // Indigo
+      color: Color(0xFF6366F1),
       page: Tugas1Widget(),
     ),
     const AppMenuItem(
       title: 'Tugas: Layout Flutter Detail Toko',
       subtitle: 'Harumony Mystic Emporium - Toko buku',
       icon: Icons.storefront_rounded,
-      color: Color(0xFFEC4899), // Pink
+      color: Color(0xFFEC4899),
       page: Tugas2Layout(),
     ),
     const AppMenuItem(
       title: 'Tugas: Luminous News',
       subtitle: 'Portal artikel & berita masa depan',
       icon: Icons.newspaper_rounded,
-      color: Color(0xFF06B6D4), // Cyan
+      color: Color(0xFF06B6D4),
       page: Tugas3Lumi(),
     ),
     const AppMenuItem(
       title: 'Tugas: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
       icon: Icons.input_rounded,
-      color: Color(0xFFF97316), // Orange
+      color: Color(0xFFF97316),
       page: Tugas3(),
     ),
     const AppMenuItem(
       title: 'Tugas: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
       icon: Icons.view_list_rounded,
-      color: Color(0xFF10B981), // Emerald
+      color: Color(0xFF10B981),
       page: Tugas4(),
     ),
     const AppMenuItem(
       title: 'Tugas: Event Handling',
       subtitle: 'Interaksi Pengguna & Event Handling',
       icon: Icons.event_rounded,
-      color: Color(0xFFF59E0B), // Amber
+      color: Color(0xFFF59E0B),
       page: Tugas5(),
     ),
     AppMenuItem(
       title: 'Tugas: Form Input',
       subtitle: 'Interaktif dengan Navigasi Drawer',
       icon: Icons.text_format_rounded,
-      color: const Color(0xFFF59E0B), // Amber
+      color: const Color(0xFFF59E0B),
       page: Tugas7(
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
     ),
   ];
-
-  void _navigateTo(Widget page) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => page));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -326,19 +351,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 dense: true,
                 onTap: () {
                   Navigator.pop(context);
-                  if (item.title == 'Tugas: Form Input') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => Tugas7(
-                          isDarkMode: widget.isDarkMode,
-                          onThemeChanged: widget.onThemeChanged,
-                        ),
-                      ),
-                    );
-                  } else {
-                    _navigateTo(item.page);
-                  }
+                  _navigateTo(item.page);
                 },
               ),
             ),

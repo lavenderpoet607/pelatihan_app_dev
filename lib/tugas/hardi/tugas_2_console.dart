@@ -1,4 +1,6 @@
 // Menyimpan persentase kehadiran dalam bentuk desimal
+import 'package:flutter/foundation.dart';
+
 double kehadiran = 0.75;
 
 // Menyimpan nilai rata-rata
@@ -22,5 +24,7 @@ String status = (nilaiakhir >= 70 && uts >= remedial && uas >= remedial) ? "Lulu
 
 // Fungsi utama yang akan dijalankan pertama kali
 void main() {
-  print("\n Persentase Kehadiran: $persen%\n Rata-rata Nilai: $Ratarata\n Nilai Akhir: $nilaiakhir\n Status: $status");
+  if (kDebugMode) {
+    print("\n Persentase Kehadiran: $persen%\n Rata-rata Nilai: $Ratarata\n Nilai Akhir: $nilaiakhir\n Status: $status");
+  }
 }
