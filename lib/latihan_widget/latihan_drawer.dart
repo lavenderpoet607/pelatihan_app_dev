@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_circleavatar.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_gridview.dart';
+import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_enum.dart';
+import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_menu.dart';
+
+export 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_enum.dart';
+export 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_menu.dart';
 
 class LatihanDrawer extends StatefulWidget {
   const LatihanDrawer({super.key});
@@ -10,18 +13,11 @@ class LatihanDrawer extends StatefulWidget {
 }
 
 class _LatihanDrawerState extends State<LatihanDrawer> {
-  int _selectedIndex = 0;
+  LatihanDrawerPage _currentPage = LatihanDrawerPage.avatar;
 
-  final List<String> _titles = ['Halaman Circle Avatar', 'Halaman Grid view'];
-
-  final List<Widget> _pages = [
-    const LatihanCircleavatar(),
-    const LatihanGridview(),
-  ];
-
-  void _onItemTapped(int index) {
+  void _onPageSelected(LatihanDrawerPage page) {
     setState(() {
-      _selectedIndex = index;
+      _currentPage = page;
     });
   }
 
@@ -29,47 +25,15 @@ class _LatihanDrawerState extends State<LatihanDrawer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titles[_selectedIndex]),
+        title: Text(_currentPage.title),
         backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const UserAccountsDrawerHeader(
-              accountName: Text("Budi Setiawan"),
-              accountEmail: Text("budi.setiawan@email.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text(
-                  "B",
-                  style: TextStyle(fontSize: 40.0, color: Colors.blue),
-                ),
-              ),
-              decoration: BoxDecoration(color: Colors.blue),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Latihan Icon Avatar'),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                _onItemTapped(0);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Latihan Grid View'),
-              selected: _selectedIndex == 1,
-              onTap: () {
-                _onItemTapped(1);
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+      drawer: LatihanDrawerMenu(
+        selectedPage: _currentPage,
+        onPageSelected: _onPageSelected,
       ),
-      body: _pages[_selectedIndex],
+      body: _currentPage.page,
     );
   }
 }

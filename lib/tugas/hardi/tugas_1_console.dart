@@ -1,17 +1,14 @@
+import 'package:flutter/foundation.dart';
+
 void main() {
   String nama = "Ridho";
-  // Menyimpan nama pengguna
-  int usia = 22; // Menyimpan Usia Pengguna
 
-  print("Nama : $nama"); // Mencetak biodata ke konsol
-  print("Usia : $usia"); // Mencetak biodata ke konsol
-  print("Halo Dunia!");
+  int usia = 22;
 
-  /*
-  Ini adalah komentar multiline.
-  Cocok untuk penjelasan panjang atau untuk
-  mematikan blok kode sementara.
-  */
+  if (kDebugMode) {
+    print("Nama : $nama");
+    print("Usia : $usia");
+    print("Halo Dunia!");
+  }
 
-  // TODO: Tambahkan validasi nama pengguna nanti
 }

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi_enum.dart';
+import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi_tujuan.dart';
+
+export 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi_enum.dart';
+export 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi_tujuan.dart';
 
 class LatihanNavigasi extends StatelessWidget {
   const LatihanNavigasi({super.key});
@@ -7,7 +12,8 @@ class LatihanNavigasi extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const HalamanTujuanNavigasi(metode: 'push'),
+        builder: (context) =>
+            const HalamanTujuanNavigasi(metode: MetodeNavigasi.push),
       ),
     );
   }
@@ -21,7 +27,7 @@ class LatihanNavigasi extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            const HalamanTujuanNavigasi(metode: 'pushReplacement'),
+            const HalamanTujuanNavigasi(metode: MetodeNavigasi.pushReplacement),
       ),
     );
   }
@@ -30,8 +36,9 @@ class LatihanNavigasi extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            const HalamanTujuanNavigasi(metode: 'pushAndRemoveUntil'),
+        builder: (context) => const HalamanTujuanNavigasi(
+          metode: MetodeNavigasi.pushAndRemoveUntil,
+        ),
       ),
       (route) => false,
     );
@@ -196,113 +203,6 @@ class LatihanNavigasi extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HalamanTujuanNavigasi extends StatelessWidget {
-  final String metode;
-
-  const HalamanTujuanNavigasi({super.key, this.metode = 'push'});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Halaman Tujuan: $metode'),
-        backgroundColor: Colors.deepPurple,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.shade50,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.check_circle,
-                  color: Colors.deepPurple,
-                  size: 44,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Navigasi Berhasil!',
-                style: Theme.of(context).textTheme.headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Halaman ini dibuka menggunakan metode: $metode',
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15, color: Colors.grey),
-              ),
-              const SizedBox(height: 30),
-              if (Navigator.canPop(context))
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back),
-                    label: const Text('Kembali (Navigator.pop)'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton.icon(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LatihanNavigasi(),
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.refresh),
-                  label: const Text('Buka Ulang Latihan Navigasi'),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.deepPurple,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      '/home',
-                      (route) => false,
-                    );
-                  },
-                  icon: const Icon(Icons.home),
-                  label: const Text('Kembali ke Menu Utama'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

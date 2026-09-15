@@ -20,7 +20,14 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_8.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas_9.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
+import 'package:pelatihan_app_dev/app_route_enum.dart';
+import 'package:pelatihan_app_dev/penjelasan/halaman_penjelasan.dart';
+import 'package:pelatihan_app_dev/penjelasan/halaman_katalog_penjelasan.dart';
+import 'package:pelatihan_app_dev/penjelasan/penjelasan_data.dart';
+import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
+import 'package:pelatihan_app_dev/custom_ui/halaman_custom_ui_studio.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         },
       ),
       routes: {
-        '/home': (context) => MultiWidgetApp(
+        AppRoute.home.path: (context) => MultiWidgetApp(
           isDarkMode: _isDarkMode,
           onThemeChanged: (bool value) {
             setState(() {
@@ -66,11 +73,11 @@ class _MyAppState extends State<MyApp> {
             });
           },
         ),
-        '/latihan_navigasi': (context) => const LatihanNavigasi(),
-        '/latihan_drawer': (context) => const LatihanDrawer(),
-        '/tujuan_navigasi': (context) =>
-            const HalamanTujuanNavigasi(metode: 'pushNamed'),
-        '/tugas7': (context) => Tugas7(
+        AppRoute.latihanNavigasi.path: (context) => const LatihanNavigasi(),
+        AppRoute.latihanDrawer.path: (context) => const LatihanDrawer(),
+        AppRoute.tujuanNavigasi.path: (context) =>
+            const HalamanTujuanNavigasi(metode: MetodeNavigasi.pushNamed),
+        AppRoute.tugas7.path: (context) => Tugas7(
           isDarkMode: _isDarkMode,
           onThemeChanged: (bool value) {
             setState(() {
@@ -78,7 +85,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
         ),
-        '/tugas8': (context) => Tugas8(
+        AppRoute.tugas8.path: (context) => Tugas8(
           isDarkMode: _isDarkMode,
           onThemeChanged: (bool value) {
             setState(() {
@@ -86,7 +93,11 @@ class _MyAppState extends State<MyApp> {
             });
           },
         ),
-        '/tugas9': (context) => const Tugas9(),
+        AppRoute.tugas9.path: (context) => const Tugas9(),
+        AppRoute.customWidget.path: (context) => const HalamanCustomWidget(),
+        AppRoute.customUi.path: (context) => const HalamanCustomUiStudio(),
+        AppRoute.latihanTextFormFieldLogin.path: (context) =>
+            const LoginScreenDB(),
       },
     );
   }
@@ -98,6 +109,7 @@ class AppMenuItem {
   final IconData icon;
   final Color color;
   final Widget page;
+  final AppRoute? route;
 
   const AppMenuItem({
     required this.title,
@@ -105,6 +117,7 @@ class AppMenuItem {
     required this.icon,
     required this.color,
     required this.page,
+    this.route,
   });
 }
 
@@ -123,14 +136,14 @@ class MultiWidgetApp extends StatefulWidget {
 }
 
 class _MultiWidgetAppState extends State<MultiWidgetApp> {
-  int _currentIndex = 0;
+  AppSection _currentSection = AppSection.latihan;
 
   void _navigateTo(Widget page) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => page));
   }
 
-  void _navPushNamed(String routeName) {
-    Navigator.pushNamed(context, routeName);
+  void _navPushRoute(AppRoute route) {
+    Navigator.pushNamed(context, route.path);
   }
 
   void _navPushReplacement(Widget page) {
@@ -228,6 +241,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       subtitle: 'Belajar navigasi drawer dengan UserAccountsDrawerHeader',
       icon: Icons.menu_open_rounded,
       color: Colors.blue,
+      route: AppRoute.latihanDrawer,
       page: LatihanDrawer(),
     ),
     AppMenuItem(
@@ -235,7 +249,16 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       subtitle: 'Belajar 4 metode navigasi: push, pushNamed, pushReplacement, pushAndRemoveUntil',
       icon: Icons.alt_route_rounded,
       color: Colors.deepPurple,
+      route: AppRoute.latihanNavigasi,
       page: LatihanNavigasi(),
+    ),
+    AppMenuItem(
+      title: 'Latihan TextFormField & Login DB',
+      subtitle: 'Validasi form, TextFormField, dan otentikasi DBHelper',
+      icon: Icons.login_rounded,
+      color: Colors.blueAccent,
+      route: AppRoute.latihanTextFormFieldLogin,
+      page: LoginScreenDB(),
     ),
   ];
 
@@ -287,6 +310,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       subtitle: 'Interaktif dengan Navigasi Drawer',
       icon: Icons.text_format_rounded,
       color: const Color(0xFFF59E0B),
+      route: AppRoute.tugas7,
       page: Tugas7(
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
@@ -297,6 +321,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       subtitle: 'BottomNavigationBar & Conditional Drawer (Ridho)',
       icon: Icons.tab_rounded,
       color: const Color(0xFF0284C7),
+      route: AppRoute.tugas8,
       page: Tugas8(
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
@@ -307,16 +332,17 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       subtitle: 'ListView.builder: List, Map, dan Model',
       icon: Icons.list_alt_rounded,
       color: Color(0xFF10B981),
+      route: AppRoute.tugas9,
       page: Tugas9(),
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final currentList = _currentIndex == 0 ? _latihanItems : _tugasItems;
-    final currentTitle = _currentIndex == 0
-        ? 'Latihan Widget'
-        : 'Tugas Mandiri';
+    final currentList = _currentSection == AppSection.latihan
+        ? _latihanItems
+        : _tugasItems;
+    final currentTitle = _currentSection.title;
 
     final tugas7Page = Tugas7(
       onThemeChanged: widget.onThemeChanged,
@@ -324,15 +350,34 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          currentTitle,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
-        elevation: 0.5,
-      ),
+      appBar: _currentSection == AppSection.customStudio
+          ? null
+          : AppBar(
+              title: Text(
+                currentTitle,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black87,
+              elevation: 0.5,
+              actions: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.menu_book_rounded,
+                    color: Colors.indigo,
+                  ),
+                  tooltip: 'Buku Penjelasan & Kode',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const HalamanKatalogPenjelasan(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -374,6 +419,60 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 ],
               ),
             ),
+            ListTile(
+              leading: const Icon(
+                Icons.menu_book_rounded,
+                color: Colors.indigo,
+              ),
+              title: const Text(
+                'Buku Penjelasan & Kode',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text('Rangkuman teori & potongan kode 22 materi'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const HalamanKatalogPenjelasan(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.tune_rounded, color: Colors.indigo),
+              title: const Text(
+                'Custom Widget Studio',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text(
+                'Rancang widget & fungsi interaktif otomatis',
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  _currentSection = AppSection.customStudio;
+                });
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.devices_rounded,
+                color: Colors.deepPurple,
+              ),
+              title: const Text(
+                'Custom UI Screen Studio',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text(
+                'Simulator layar utuh & generator UI interaktif',
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, AppRoute.customUi.path);
+              },
+            ),
+            const Divider(),
             const Padding(
               padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
               child: Text(
@@ -393,7 +492,11 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 dense: true,
                 onTap: () {
                   Navigator.pop(context);
-                  _navigateTo(item.page);
+                  if (item.route != null) {
+                    _navPushRoute(item.route!);
+                  } else {
+                    _navigateTo(item.page);
+                  }
                 },
               ),
             ),
@@ -417,8 +520,8 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 dense: true,
                 onTap: () {
                   Navigator.pop(context);
-                  if (item.title == 'Tugas: Form Input') {
-                    _navPushNamed('/tugas7');
+                  if (item.route != null) {
+                    _navPushRoute(item.route!);
                   } else {
                     _navigateTo(item.page);
                   }
@@ -428,43 +531,42 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
           ],
         ),
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        itemCount: currentList.length,
-        itemBuilder: (context, index) {
-          final item = currentList[index];
-          if (_currentIndex == 0 && index == 0) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildNavigationDemoCard(tugas7Page),
-                _buildMenuItemCard(item),
-              ],
-            );
-          }
+      body: _currentSection == AppSection.customStudio
+          ? const HalamanCustomWidget()
+          : ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              itemCount: currentList.length,
+              itemBuilder: (context, index) {
+                final item = currentList[index];
+                if (_currentSection == AppSection.latihan && index == 0) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildNavigationDemoCard(tugas7Page),
+                      _buildMenuItemCard(item),
+                    ],
+                  );
+                }
 
-          return _buildMenuItemCard(item);
-        },
-      ),
+                return _buildMenuItemCard(item);
+              },
+            ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
+        selectedIndex: _currentSection.index,
         onDestinationSelected: (index) {
           setState(() {
-            _currentIndex = index;
+            _currentSection = AppSection.values[index];
           });
         },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.widgets_outlined),
-            selectedIcon: Icon(Icons.widgets_rounded),
-            label: 'Latihan Widget',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.assignment_outlined),
-            selectedIcon: Icon(Icons.assignment_rounded),
-            label: 'Tugas',
-          ),
-        ],
+        destinations: AppSection.values
+            .map(
+              (section) => NavigationDestination(
+                icon: Icon(section.icon),
+                selectedIcon: Icon(section.selectedIcon),
+                label: section.navLabel,
+              ),
+            )
+            .toList(),
       ),
     );
   }
@@ -481,8 +583,8 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
-          if (item.title == 'Tugas: Form Input') {
-            _navPushNamed('/tugas7');
+          if (item.route != null) {
+            _navPushRoute(item.route!);
           } else {
             _navigateTo(item.page);
           }
@@ -522,6 +624,25 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                     ),
                   ],
                 ),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.menu_book_rounded,
+                  color: item.color,
+                  size: 22,
+                ),
+                tooltip: 'Penjelasan & Potongan Kode',
+                onPressed: () {
+                  final penjelasan = cariPenjelasanItem(item.title);
+                  if (penjelasan != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => HalamanPenjelasan(item: penjelasan),
+                      ),
+                    );
+                  }
+                },
               ),
               Icon(
                 Icons.arrow_forward_ios_rounded,
@@ -604,7 +725,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
             ),
             const SizedBox(height: 8),
             ElevatedButton.icon(
-              onPressed: () => _navPushNamed('/tugas7'),
+              onPressed: () => _navPushRoute(AppRoute.tugas7),
               icon: const Icon(Icons.link, size: 16),
               label: const Text('pushNamed', style: TextStyle(fontSize: 12)),
               style: ElevatedButton.styleFrom(

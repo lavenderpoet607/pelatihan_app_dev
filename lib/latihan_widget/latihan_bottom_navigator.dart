@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_enum.dart';
+
+export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_cari.dart';
+export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_enum.dart';
+export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_home.dart';
+export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_profil.dart';
 
 class LatihanBottomNavigator extends StatefulWidget {
   const LatihanBottomNavigator({super.key});
@@ -8,33 +14,33 @@ class LatihanBottomNavigator extends StatefulWidget {
 }
 
 class _LatihanBottomNavigatorState extends State<LatihanBottomNavigator> {
-  int _currentIndex = 0;
-  final List<Widget> _pages = const [
-    Center(child: Text("Halaman 1")),
-    Center(child: Text("Halaman 2")),
-    Center(child: Text("Halaman 3")),
-  ];
+  BottomNavTab _currentTab = BottomNavTab.home;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Latihan Bottom Navigator"),
+        title: Text("Latihan Bottom Navigator: ${_currentTab.label}"),
         backgroundColor: Colors.amberAccent,
       ),
-      body: IndexedStack(index: _currentIndex, children: _pages),
+      body: IndexedStack(
+        index: _currentTab.index,
+        children: BottomNavTab.values.map((tab) => tab.page).toList(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: _currentTab.index,
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            _currentTab = BottomNavTab.values[index];
           });
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Cari'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
-        ],
+        items: BottomNavTab.values.map((tab) {
+          return BottomNavigationBarItem(
+            icon: Icon(tab.icon),
+            activeIcon: Icon(tab.activeIcon),
+            label: tab.label,
+          );
+        }).toList(),
       ),
     );
   }
