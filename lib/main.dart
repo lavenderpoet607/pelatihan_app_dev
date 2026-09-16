@@ -11,6 +11,7 @@ import 'package:pelatihan_app_dev/latihan_widget/latihan_textfield.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_stateful.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
 import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
@@ -94,6 +95,7 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         AppRoute.tugas9.path: (context) => const Tugas9(),
+        AppRoute.tugas10.path: (context) => const Tugas10(),
         AppRoute.customWidget.path: (context) => const HalamanCustomWidget(),
         AppRoute.customUi.path: (context) => const HalamanCustomUiStudio(),
         AppRoute.latihanTextFormFieldLogin.path: (context) =>
@@ -144,18 +146,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   void _navPushRoute(AppRoute route) {
     Navigator.pushNamed(context, route.path);
-  }
-
-  void _navPushReplacement(Widget page) {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
-  }
-
-  void _navPushAndRemoveUntil(Widget page) {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-      (route) => false,
-    );
   }
 
   static const List<AppMenuItem> _latihanItems = [
@@ -327,13 +317,21 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
         isDarkMode: widget.isDarkMode,
       ),
     ),
-    const AppMenuItem(
+    AppMenuItem(
       title: 'Tugas: Daftar Kategori',
       subtitle: 'ListView.builder: List, Map, dan Model',
       icon: Icons.list_alt_rounded,
       color: Color(0xFF10B981),
       route: AppRoute.tugas9,
       page: Tugas9(),
+    ),
+    const AppMenuItem(
+      title: 'Tugas: Formulir Pendaftaran',
+      subtitle: 'Validasi form, AlertDialog ringkasan & halaman konfirmasi',
+      icon: Icons.app_registration_rounded,
+      color: Color(0xFF2563EB),
+      route: AppRoute.tugas10,
+      page: Tugas10(),
     ),
   ];
 
@@ -344,7 +342,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
         : _tugasItems;
     final currentTitle = _currentSection.title;
 
-    final tugas7Page = Tugas7(
+    final _ = Tugas7(
       onThemeChanged: widget.onThemeChanged,
       isDarkMode: widget.isDarkMode,
     );

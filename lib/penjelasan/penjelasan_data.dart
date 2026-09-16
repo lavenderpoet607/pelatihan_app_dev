@@ -22,6 +22,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 
@@ -850,6 +851,47 @@ SwitchListTile(
   },
 )''',
     halaman: const LoginScreenDB(),
+  ),
+  PenjelasanItem(
+    title: 'Tugas: Formulir Pendaftaran',
+    subtitle: 'Validasi form, AlertDialog ringkasan & halaman konfirmasi',
+    kategori: 'Tugas',
+    icon: Icons.app_registration_rounded,
+    color: const Color(0xFF2563EB),
+    deskripsi: 'Tugas 10 mengimplementasikan alur formulir pendaftaran aplikasi lengkap dengan validasi TextFormField terintegrasi FormState. Field formulir mencakup Nama Lengkap (wajib), Email (wajib & mengandung @), Nomor HP (opsional), dan data kustom aplikasi berupa Kota Asal (wajib) serta peminatan. Setelah tombol Daftar ditekan dan form valid, AlertDialog ringkasan data ditampilkan dengan tombol Batal dan Lanjut. Tombol Lanjut mengarahkan pengguna ke Halaman Konfirmasi melalui Navigator dengan pesan sapaan resmi: "Terima kasih, [Nama] dari [Kota] telah mendaftar."',
+    poinPenting: [
+      'Form validation menggunakan GlobalKey<FormState> dengan TextFormField terstruktur',
+      'Validasi field: Nama Lengkap wajib, Email wajib & format @, Nomor HP opsional, Kota Asal wajib',
+      'AlertDialog kustom menampilkan ringkasan data calon peserta sebelum konfirmasi akhir',
+      'Tombol Lanjut pada dialog menavigasi ke Halaman Konfirmasi menggunakan Navigator.push',
+      'Halaman Konfirmasi menyapa pengguna dengan format resmi: "Terima kasih, [Nama] dari [Kota] telah mendaftar."',
+      'Arsitektur modular dengan pemisahan file: enum, model, validator, dialog, form, dan halaman konfirmasi',
+    ],
+    cropKode: r'''if (_formKey.currentState?.validate() ?? false) {
+  final peserta = PesertaPendaftaranModel(
+    namaLengkap: _namaController.text.trim(),
+    email: _emailController.text.trim(),
+    nomorHp: _nomorHpController.text.trim(),
+    kotaAsal: _kotaController.text.trim(),
+    peminatan: _selectedPeminatan,
+    waktuDaftar: DateTime.now(),
+  );
+
+  Tugas10DialogHelper.showRingkasanDialog(
+    context: context,
+    peserta: peserta,
+    onLanjut: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => HalamanKonfirmasiPendaftaran(
+            peserta: peserta,
+          ),
+        ),
+      );
+    },
+  );
+}''',
+    halaman: const Tugas10(),
   ),
 ];
 
