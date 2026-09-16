@@ -1,4 +1,6 @@
 allprojects {
+    group = "com.example.pelatihan_app_dev"
+    version = "1.0.0"
     repositories {
         google()
         mavenCentral()
@@ -14,7 +16,14 @@ rootProject.layout.buildDirectory.value(newBuildDir)
 subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
+
+    plugins.withId("java") {
+        extensions.configure<JavaPluginExtension> {
+            toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }

@@ -1,7 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:pelatihan_app_dev/custom_ui/custom_ui_enum.dart';
 import 'package:pelatihan_app_dev/custom_ui/custom_ui_state.dart';
 
 class CustomUiCodeGenerator {
+  static String _colorToHex(Color color) {
+    return '0x${color.toARGB32().toRadixString(16).toUpperCase()}';
+  }
+
   static String generate(CustomUiConfig config) {
     switch (config.template) {
       case CustomUiTemplate.profileScreen:
@@ -18,20 +23,18 @@ class CustomUiCodeGenerator {
   }
 
   static String _generateProfileCode(CustomUiConfig config) {
-    final primaryHex =
-        '0x${config.preset.primary.value.toRadixString(16).toUpperCase()}';
-    final accentHex =
-        '0x${config.preset.accent.value.toRadixString(16).toUpperCase()}';
+    final primaryHex = _colorToHex(config.preset.primary);
+    final accentHex = _colorToHex(config.preset.accent);
     final radius = config.borderRadius.toStringAsFixed(1);
-    final bgHex = config.isDarkMode
-        ? '0x${config.preset.bgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.bgLight.value.toRadixString(16).toUpperCase()}';
-    final cardBgHex = config.isDarkMode
-        ? '0x${config.preset.cardBgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.cardBgLight.value.toRadixString(16).toUpperCase()}';
-    final textColorHex = config.isDarkMode
-        ? '0x${config.preset.textDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.textLight.value.toRadixString(16).toUpperCase()}';
+    final bgHex = _colorToHex(
+      config.isDarkMode ? config.preset.bgDark : config.preset.bgLight,
+    );
+    final cardBgHex = _colorToHex(
+      config.isDarkMode ? config.preset.cardBgDark : config.preset.cardBgLight,
+    );
+    final textColorHex = _colorToHex(
+      config.isDarkMode ? config.preset.textDark : config.preset.textLight,
+    );
 
     return '''import 'package:flutter/material.dart';
 
@@ -191,18 +194,17 @@ class _CustomProfileScreenState extends State<CustomProfileScreen> {
   }
 
   static String _generateEcommerceCode(CustomUiConfig config) {
-    final primaryHex =
-        '0x${config.preset.primary.value.toRadixString(16).toUpperCase()}';
+    final primaryHex = _colorToHex(config.preset.primary);
     final radius = config.borderRadius.toStringAsFixed(1);
-    final bgHex = config.isDarkMode
-        ? '0x${config.preset.bgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.bgLight.value.toRadixString(16).toUpperCase()}';
-    final cardBgHex = config.isDarkMode
-        ? '0x${config.preset.cardBgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.cardBgLight.value.toRadixString(16).toUpperCase()}';
-    final textColorHex = config.isDarkMode
-        ? '0x${config.preset.textDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.textLight.value.toRadixString(16).toUpperCase()}';
+    final bgHex = _colorToHex(
+      config.isDarkMode ? config.preset.bgDark : config.preset.bgLight,
+    );
+    final cardBgHex = _colorToHex(
+      config.isDarkMode ? config.preset.cardBgDark : config.preset.cardBgLight,
+    );
+    final textColorHex = _colorToHex(
+      config.isDarkMode ? config.preset.textDark : config.preset.textLight,
+    );
 
     return '''import 'package:flutter/material.dart';
 
@@ -365,18 +367,17 @@ class _CustomEcommerceDetailScreenState extends State<CustomEcommerceDetailScree
   }
 
   static String _generateNewsFeedCode(CustomUiConfig config) {
-    final primaryHex =
-        '0x${config.preset.primary.value.toRadixString(16).toUpperCase()}';
+    final primaryHex = _colorToHex(config.preset.primary);
     final radius = config.borderRadius.toStringAsFixed(1);
-    final bgHex = config.isDarkMode
-        ? '0x${config.preset.bgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.bgLight.value.toRadixString(16).toUpperCase()}';
-    final cardBgHex = config.isDarkMode
-        ? '0x${config.preset.cardBgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.cardBgLight.value.toRadixString(16).toUpperCase()}';
-    final textColorHex = config.isDarkMode
-        ? '0x${config.preset.textDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.textLight.value.toRadixString(16).toUpperCase()}';
+    final bgHex = _colorToHex(
+      config.isDarkMode ? config.preset.bgDark : config.preset.bgLight,
+    );
+    final cardBgHex = _colorToHex(
+      config.isDarkMode ? config.preset.cardBgDark : config.preset.cardBgLight,
+    );
+    final textColorHex = _colorToHex(
+      config.isDarkMode ? config.preset.textDark : config.preset.textLight,
+    );
 
     return '''import 'package:flutter/material.dart';
 
@@ -475,20 +476,18 @@ class _CustomNewsFeedScreenState extends State<CustomNewsFeedScreen> {
   }
 
   static String _generateDashboardCode(CustomUiConfig config) {
-    final primaryHex =
-        '0x${config.preset.primary.value.toRadixString(16).toUpperCase()}';
-    final accentHex =
-        '0x${config.preset.accent.value.toRadixString(16).toUpperCase()}';
+    final primaryHex = _colorToHex(config.preset.primary);
+    final accentHex = _colorToHex(config.preset.accent);
     final radius = config.borderRadius.toStringAsFixed(1);
-    final bgHex = config.isDarkMode
-        ? '0x${config.preset.bgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.bgLight.value.toRadixString(16).toUpperCase()}';
-    final cardBgHex = config.isDarkMode
-        ? '0x${config.preset.cardBgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.cardBgLight.value.toRadixString(16).toUpperCase()}';
-    final textColorHex = config.isDarkMode
-        ? '0x${config.preset.textDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.textLight.value.toRadixString(16).toUpperCase()}';
+    final bgHex = _colorToHex(
+      config.isDarkMode ? config.preset.bgDark : config.preset.bgLight,
+    );
+    final cardBgHex = _colorToHex(
+      config.isDarkMode ? config.preset.cardBgDark : config.preset.cardBgLight,
+    );
+    final textColorHex = _colorToHex(
+      config.isDarkMode ? config.preset.textDark : config.preset.textLight,
+    );
 
     return '''import 'package:flutter/material.dart';
 
@@ -571,18 +570,17 @@ class CustomDashboardScreen extends StatelessWidget {
   }
 
   static String _generateCheckoutCode(CustomUiConfig config) {
-    final primaryHex =
-        '0x${config.preset.primary.value.toRadixString(16).toUpperCase()}';
+    final primaryHex = _colorToHex(config.preset.primary);
     final radius = config.borderRadius.toStringAsFixed(1);
-    final bgHex = config.isDarkMode
-        ? '0x${config.preset.bgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.bgLight.value.toRadixString(16).toUpperCase()}';
-    final cardBgHex = config.isDarkMode
-        ? '0x${config.preset.cardBgDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.cardBgLight.value.toRadixString(16).toUpperCase()}';
-    final textColorHex = config.isDarkMode
-        ? '0x${config.preset.textDark.value.toRadixString(16).toUpperCase()}'
-        : '0x${config.preset.textLight.value.toRadixString(16).toUpperCase()}';
+    final bgHex = _colorToHex(
+      config.isDarkMode ? config.preset.bgDark : config.preset.bgLight,
+    );
+    final cardBgHex = _colorToHex(
+      config.isDarkMode ? config.preset.cardBgDark : config.preset.cardBgLight,
+    );
+    final textColorHex = _colorToHex(
+      config.isDarkMode ? config.preset.textDark : config.preset.textLight,
+    );
 
     return '''import 'package:flutter/material.dart';
 

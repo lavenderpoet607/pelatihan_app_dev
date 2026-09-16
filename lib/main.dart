@@ -541,10 +541,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 if (_currentSection == AppSection.latihan && index == 0) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _buildNavigationDemoCard(tugas7Page),
-                      _buildMenuItemCard(item),
-                    ],
+                    children: [_buildMenuItemCard(item)],
                   );
                 }
 
@@ -651,136 +648,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavigationDemoCard(Widget tugas7Page) {
-    return Card(
-      elevation: 0,
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.blue.shade100, width: 1.5),
-      ),
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Icon(
-                    Icons.alt_route_rounded,
-                    color: Colors.blueAccent,
-                    size: 20,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '4 Metode Navigasi',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        'Uji navigasi ke Tugas 7 dalam satu halaman',
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 14),
-            ElevatedButton.icon(
-              onPressed: () => _navigateTo(tugas7Page),
-              icon: const Icon(Icons.arrow_forward, size: 16),
-              label: const Text('push', style: TextStyle(fontSize: 12)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () => _navPushRoute(AppRoute.tugas7),
-              icon: const Icon(Icons.link, size: 16),
-              label: const Text('pushNamed', style: TextStyle(fontSize: 12)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () => _navPushReplacement(tugas7Page),
-              icon: const Icon(Icons.swap_horiz, size: 16),
-              label: const Text(
-                'pushReplacement',
-                style: TextStyle(fontSize: 11),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              onPressed: () => _navPushAndRemoveUntil(tugas7Page),
-              icon: const Icon(Icons.clear_all, size: 16),
-              label: const Text(
-                'pushAndRemoveUntil',
-                style: TextStyle(fontSize: 10),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepOrange,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 2,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

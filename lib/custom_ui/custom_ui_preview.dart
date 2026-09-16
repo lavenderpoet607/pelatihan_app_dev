@@ -935,26 +935,32 @@ class CustomUiPreview extends StatelessWidget {
                   ),
                 ),
               ),
-              ...[
-                'Dompet Digital (QRIS / E-Wallet)',
-                'Transfer Virtual Account Bank',
-              ].asMap().entries.map((entry) {
-                return RadioListTile<int>(
-                  dense: true,
-                  title: Text(
-                    entry.value,
-                    style: TextStyle(fontSize: 12, color: textColor),
-                  ),
-                  value: entry.key,
-                  groupValue: config.selectedOptionIndex,
-                  activeColor: theme.primary,
-                  onChanged: (val) {
-                    onConfigChanged(
-                      config.copyWith(selectedOptionIndex: val ?? 0),
-                    );
-                  },
-                );
-              }),
+              RadioGroup<int>(
+                groupValue: config.selectedOptionIndex,
+                onChanged: (val) {
+                  onConfigChanged(
+                    config.copyWith(selectedOptionIndex: val ?? 0),
+                  );
+                },
+                child: Column(
+                  children: [
+                    ...[
+                      'Dompet Digital (QRIS / E-Wallet)',
+                      'Transfer Virtual Account Bank',
+                    ].asMap().entries.map((entry) {
+                      return RadioListTile<int>(
+                        dense: true,
+                        title: Text(
+                          entry.value,
+                          style: TextStyle(fontSize: 12, color: textColor),
+                        ),
+                        value: entry.key,
+                        activeColor: theme.primary,
+                      );
+                    }),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

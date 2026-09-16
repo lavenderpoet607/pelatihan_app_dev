@@ -4,11 +4,7 @@ void main() {
   String nama = "Ridho";
 
   int usia = 22;
-
-  if (kDebugMode) {
-    print("Nama : $nama");
-    print("Usia : $usia");
-    print("Halo Dunia!");
-  }
-
+  debugPrint("Nama: $nama");
+  debugPrint("Usia : $usia");
+  debugPrint("Halo Dunia!");
 }

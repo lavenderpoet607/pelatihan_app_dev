@@ -4,7 +4,7 @@ class Tugas5 extends StatefulWidget {
   const Tugas5({super.key});
 
   @override
-  _Tugas5State createState() => _Tugas5State();
+  State<Tugas5> createState() => _Tugas5State();
 }
 
 bool _showText = false;
@@ -65,7 +65,7 @@ class _Tugas5State extends State<Tugas5> {
                     _textButton = !_textButton;
                   });
                   if (_textButton) {
-                    print("Sentuhan terdeteksi");
+                    debugPrint("Sentuhan terdeteksi");
                   }
                 },
                 child: Text(
@@ -86,7 +86,7 @@ class _Tugas5State extends State<Tugas5> {
                   setState(() {
                     _textInk = !_textInk;
                   });
-                  print("Sentuhan terdeteksi");
+                  debugPrint("Sentuhan terdeteksi");
                 },
                 child: Container(
                   width: double.infinity,
@@ -129,14 +129,14 @@ class _Tugas5State extends State<Tugas5> {
                     _angka++;
                     _pesan = "Sentuhan terdeteksi : $_angka";
                   });
-                  print("Sentuhan terdeteksi : $_angka");
+                  debugPrint("Sentuhan terdeteksi : $_angka");
                 },
                 onDoubleTap: () {
                   setState(() {
                     _angka += 2;
                     _pesan = "Sentuhan terdeteksi : $_angka";
                   });
-                  print("Sentuhan terdeteksi : $_angka");
+                  debugPrint("Sentuhan terdeteksi : $_angka");
                 },
 
                 onLongPress: () {
@@ -144,7 +144,7 @@ class _Tugas5State extends State<Tugas5> {
                     _angka += 3;
                     _pesan = "Sentuhan terdeteksi : $_angka";
                   });
-                  print("Sentuhan terdeteksi : $_angka");
+                  debugPrint("Sentuhan terdeteksi : $_angka");
                 },
                 child: Container(
                   width: double.infinity,
