@@ -202,7 +202,7 @@ class _CustomUiControlsState extends State<CustomUiControls> {
                   'Uji tampilan dalam mode kontras malam hari',
                 ),
                 value: widget.config.isDarkMode,
-                activeColor: Colors.indigo,
+                activeThumbColor: Colors.indigo,
                 onChanged: (val) {
                   widget.onConfigChanged(
                     widget.config.copyWith(isDarkMode: val),

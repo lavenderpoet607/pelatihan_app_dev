@@ -19,7 +19,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas_8.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
 import 'package:pelatihan_app_dev/app_route_enum.dart';
 import 'package:pelatihan_app_dev/penjelasan/halaman_penjelasan.dart';

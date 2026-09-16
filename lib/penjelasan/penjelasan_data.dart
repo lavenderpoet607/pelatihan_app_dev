@@ -15,7 +15,7 @@ import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/penjelasan/penjelasan_model.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas_8.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';

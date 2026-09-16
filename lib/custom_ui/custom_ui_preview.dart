@@ -26,7 +26,7 @@ class CustomUiPreview extends StatelessWidget {
           borderRadius: BorderRadius.circular(frame.cornerRadius),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.18),
+              color: Colors.black.withValues(alpha: 0.18),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -167,7 +167,7 @@ class CustomUiPreview extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.12),
+                        color: Colors.black.withValues(alpha: 0.12),
                         blurRadius: 8,
                         offset: const Offset(0, 3),
                       ),
@@ -277,7 +277,7 @@ class CustomUiPreview extends StatelessWidget {
                     borderRadius: BorderRadius.circular(config.borderRadius),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
+                        color: Colors.black.withValues(alpha: 0.04),
                         blurRadius: 6,
                         offset: const Offset(0, 2),
                       ),
@@ -347,7 +347,7 @@ class CustomUiPreview extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: 0.05),
                             blurRadius: 8,
                           ),
                         ],
@@ -397,7 +397,7 @@ class CustomUiPreview extends StatelessWidget {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.redAccent.withOpacity(0.12),
+                        color: Colors.redAccent.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: const Text(
@@ -474,7 +474,7 @@ class CustomUiPreview extends StatelessWidget {
             color: cardBg,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.06),
+                color: Colors.black.withValues(alpha: 0.06),
                 blurRadius: 8,
                 offset: const Offset(0, -2),
               ),
@@ -582,7 +582,7 @@ class CustomUiPreview extends StatelessWidget {
             borderRadius: BorderRadius.circular(config.borderRadius),
             boxShadow: [
               BoxShadow(
-                color: theme.primary.withOpacity(0.3),
+                color: theme.primary.withValues(alpha: 0.3),
                 blurRadius: 8,
                 offset: const Offset(0, 3),
               ),
@@ -600,7 +600,7 @@ class CustomUiPreview extends StatelessWidget {
                       vertical: 2,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.25),
+                      color: Colors.white.withValues(alpha: 0.25),
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: const Text(
@@ -641,7 +641,7 @@ class CustomUiPreview extends StatelessWidget {
               Text(
                 config.subtitle,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.85),
+                  color: Colors.white.withValues(alpha: 0.85),
                   fontSize: 12,
                 ),
                 maxLines: 2,
@@ -651,7 +651,7 @@ class CustomUiPreview extends StatelessWidget {
               Text(
                 config.extraText,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withValues(alpha: 0.7),
                   fontSize: 10,
                 ),
               ),
@@ -682,7 +682,7 @@ class CustomUiPreview extends StatelessWidget {
                 width: 38,
                 height: 38,
                 decoration: BoxDecoration(
-                  color: theme.primary.withOpacity(0.12),
+                  color: theme.primary.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -726,7 +726,7 @@ class CustomUiPreview extends StatelessWidget {
             borderRadius: BorderRadius.circular(config.borderRadius),
             boxShadow: [
               BoxShadow(
-                color: theme.primary.withOpacity(0.3),
+                color: theme.primary.withValues(alpha: 0.3),
                 blurRadius: 8,
                 offset: const Offset(0, 3),
               ),
@@ -756,7 +756,7 @@ class CustomUiPreview extends StatelessWidget {
               Text(
                 config.subtitle,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                   fontSize: 11,
                 ),
               ),
@@ -850,7 +850,7 @@ class CustomUiPreview extends StatelessWidget {
         color: cardBg,
         borderRadius: BorderRadius.circular(config.borderRadius),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 6),
         ],
       ),
       child: Column(
