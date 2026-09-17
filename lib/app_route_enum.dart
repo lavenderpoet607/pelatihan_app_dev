@@ -9,12 +9,14 @@ enum AppRoute {
   tugas8('/tugas8'),
   tugas9('/tugas9'),
   tugas10('/tugas10'),
+  tugas11('/tugas11'),
   customWidget('/custom_widget'),
   customUi('/custom_ui'),
   latihanTextFormFieldLogin('/latihan_textformfield_login'),
   latihanSharedPrefSession('/latihan_shared_pref_session');
 
   final String path;
+
   const AppRoute(this.path);
 }
 

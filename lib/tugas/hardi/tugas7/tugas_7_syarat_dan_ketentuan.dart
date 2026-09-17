@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_drawer.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas7/components/tugas_7_drawer.dart';
 
 class Tugas7 extends StatefulWidget {
   const Tugas7({

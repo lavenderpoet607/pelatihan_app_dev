@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pelatihan_app_dev/app_route_enum.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extended_navigator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extensions/extended_navigator.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/halaman_detail_session.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/halaman_login_session.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/preference_handler.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
 
 class HomeScreenDay15 extends StatefulWidget {
   const HomeScreenDay15({super.key});

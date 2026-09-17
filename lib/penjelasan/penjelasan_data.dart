@@ -26,6 +26,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dar
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
+import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 
 final List<PenjelasanItem> daftarPenjelasan = [
   PenjelasanItem(
@@ -946,6 +947,49 @@ SwitchListTile(
   }
 }''',
     halaman: const LatihanSharedPreferencesSession(),
+  ),
+  PenjelasanItem(
+    title: 'Tugas: Shared Preferences',
+    subtitle: 'Implementasi Sesi Pengguna (Shared Preferences)',
+    kategori: 'Tugas',
+    icon: Icons.app_registration_rounded,
+    color: const Color(0xFF2563EB),
+    deskripsi: 'Tugas ini mengimplementasikan manajemen sesi pengguna (Auto-Login & Keep Login) menggunakan package shared_preferences dengan kelas pembantu PreferenceHandler terpisah. Alur aplikasi dimulai dari SplashScreen yang menampilkan logo dan loading indicator selama 2 detik menggunakan Future.delayed. Status login diperiksa secara otomatis; jika sudah login, aplikasi berpindah ke HomeScreen via Navigator.pushReplacement. Jika belum, pengguna diarahkan ke LoginScreen. Pada HomeScreen tersedia aksi Logout yang menghapus sesi dan menampilkan feedback visual SnackBar "Berhasil Logout" di LoginScreen.',
+    poinPenting: [
+      'Penyimpanan sesi lokal persisten menggunakan SharedPreferences melalui PreferenceHandler',
+      'Struktur arsitektur bersih memisahkan komponen ke dalam folder components, core, dan extensions',
+      'Splash Screen routing dinamis menggunakan Future.delayed selama 2 detik',
+      'Perpindahan halaman menggunakan pushReplacement untuk mencegah pengguna kembali ke splash screen',
+      'Fitur Keep Login mempertahankan sesi login pengguna meskipun aplikasi ditutup',
+      'Logout action mengubah status isLogin menjadi false dan memicu feedback visual SnackBar Berhasil Logout',
+    ],
+    cropKode: r'''class PreferenceHandler {
+  static SharedPreferences? _prefs;
+  static const String _keyIsLogin = 'isLogin_habibi_tugas11';
+  static const String _keyUsername = 'username_habibi_tugas11';
+
+  static Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
+
+  static Future<void> setLogin(bool isLogin) async {
+    final prefs = _prefs ?? await SharedPreferences.getInstance();
+    _prefs = prefs;
+    await prefs.setBool(_keyIsLogin, isLogin);
+  }
+
+  static bool get isLogin {
+    return _prefs?.getBool(_keyIsLogin) ?? false;
+  }
+
+  static Future<void> logout() async {
+    final prefs = _prefs ?? await SharedPreferences.getInstance();
+    _prefs = prefs;
+    await prefs.setBool(_keyIsLogin, false);
+    await prefs.remove(_keyUsername);
+  }
+}''',
+    halaman: const Tugas11(),
   ),
 ];
 

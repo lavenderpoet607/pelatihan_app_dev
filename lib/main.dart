@@ -11,6 +11,7 @@ import 'package:pelatihan_app_dev/latihan_widget/textfield/latihan_textfield.dar
 import 'package:pelatihan_app_dev/latihan_widget/stateful/latihan_stateful.dart';
 import 'package:pelatihan_app_dev/latihan_widget/circle_avatar/latihan_widget_circle_avatar.dart';
 import 'package:pelatihan_app_dev/latihan_widget/icon/latihan_widget_icon.dart';
+import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas3/tugas_3.dart';
@@ -31,11 +32,14 @@ import 'package:pelatihan_app_dev/custom_ui/halaman_custom_ui_studio.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/halaman_splash_session.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/preference_handler.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
+import 'package:pelatihan_app_dev/tugas/habibi/tugas11/core/preference_handler.dart'
+    as habibi_pref;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferenceHandler.init();
+  await habibi_pref.PreferenceHandler.init();
   runApp(const MyApp());
 }
 
@@ -101,6 +105,7 @@ class _MyAppState extends State<MyApp> {
         ),
         AppRoute.tugas9.path: (context) => const Tugas9(),
         AppRoute.tugas10.path: (context) => const Tugas10(),
+        AppRoute.tugas11.path: (context) => const Tugas11(),
         AppRoute.customWidget.path: (context) => const HalamanCustomWidget(),
         AppRoute.customUi.path: (context) => const HalamanCustomUiStudio(),
         AppRoute.latihanTextFormFieldLogin.path: (context) =>
@@ -340,13 +345,21 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       route: AppRoute.tugas9,
       page: Tugas9(),
     ),
-    const AppMenuItem(
+    AppMenuItem(
       title: 'Tugas: Formulir Pendaftaran',
       subtitle: 'Validasi form, AlertDialog ringkasan & halaman konfirmasi',
       icon: Icons.app_registration_rounded,
       color: Color(0xFF2563EB),
       route: AppRoute.tugas10,
       page: Tugas10(),
+    ),
+    AppMenuItem(
+      title: 'Tugas: Shared Preferences',
+      subtitle: 'Implementasi Sesi Pengguna (Shared Preferences)',
+      icon: Icons.lock,
+      color: Color(0xFF2563EB),
+      route: AppRoute.tugas11,
+      page: Tugas11(),
     ),
   ];
 

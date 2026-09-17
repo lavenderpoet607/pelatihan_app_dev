@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extended_navigator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extensions/extended_navigator.dart';
 
 class DetailScreenDay15 extends StatelessWidget {
   final String title;

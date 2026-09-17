@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi_enum.dart';
-import 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi_tujuan.dart';
+import 'package:pelatihan_app_dev/latihan_widget/navigasi/core/latihan_navigasi_enum.dart';
+import 'package:pelatihan_app_dev/latihan_widget/navigasi/components/latihan_navigasi_tujuan.dart';
 
-export 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi_enum.dart';
-export 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi_tujuan.dart';
+export 'package:pelatihan_app_dev/latihan_widget/navigasi/core/latihan_navigasi_enum.dart';
+export 'package:pelatihan_app_dev/latihan_widget/navigasi/components/latihan_navigasi_tujuan.dart';
 
 class LatihanNavigasi extends StatelessWidget {
   const LatihanNavigasi({super.key});

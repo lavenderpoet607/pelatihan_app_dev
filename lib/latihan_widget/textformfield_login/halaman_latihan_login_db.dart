@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/db_helper_simulasi.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/dialog_helper_login.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/form_validator.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_home_login.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/latihan_form_login_enum.dart';
-import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/user_model_sql.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/core/db_helper_simulasi.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/components/dialog_helper_login.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/extensions/form_validator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/components/halaman_home_login.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/core/latihan_form_login_enum.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/core/user_model_sql.dart';
 
 class LoginScreenDB extends StatefulWidget {
   const LoginScreenDB({super.key});

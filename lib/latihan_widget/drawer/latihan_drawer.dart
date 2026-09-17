@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_enum.dart';
-import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_menu.dart';
-
-export 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_enum.dart';
-export 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer_menu.dart';
+import 'package:pelatihan_app_dev/latihan_widget/drawer/components/latihan_drawer_menu.dart';
+import 'package:pelatihan_app_dev/latihan_widget/drawer/core/latihan_drawer_enum.dart';
 
 class LatihanDrawer extends StatefulWidget {
   const LatihanDrawer({super.key});

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_enum.dart';
-
-export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_cari.dart';
-export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_enum.dart';
-export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_home.dart';
-export 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_nav_profil.dart';
+import 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/core/latihan_bottom_nav_enum.dart';
 
 class LatihanBottomNavigator extends StatefulWidget {
   const LatihanBottomNavigator({super.key});

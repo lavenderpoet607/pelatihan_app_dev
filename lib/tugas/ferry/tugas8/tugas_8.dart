@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_drawer.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_tab_enum.dart';
-
-export 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_drawer.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_form_input.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_tab_enum.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_tentang_aplikasi.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8_widgets.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas8/components/tugas_8_drawer.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas8/core/tugas_8_tab_enum.dart';
 
 class Tugas8 extends StatefulWidget {
   final ValueChanged<bool>? onThemeChanged;

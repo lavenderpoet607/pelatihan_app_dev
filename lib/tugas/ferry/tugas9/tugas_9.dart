@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_tab_enum.dart';
-
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_card_produk.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_data.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_model_produk.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_tab_enum.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_tab_list.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_tab_map.dart';
-export 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9_tab_model.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas9/core/tugas_9_tab_enum.dart';
 
 class Tugas9 extends StatelessWidget {
   const Tugas9({super.key});

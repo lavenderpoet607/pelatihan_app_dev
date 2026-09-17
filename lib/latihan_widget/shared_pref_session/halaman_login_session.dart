@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extended_navigator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/extensions/extended_navigator.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/halaman_home_session.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/preference_handler.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
 
 class LoginScreenDay15 extends StatefulWidget {
   const LoginScreenDay15({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_dialog.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_enum.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_halaman_konfirmasi.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_model_peserta.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_validator.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/components/tugas_10_dialog.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/core/tugas_10_enum.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/components/tugas_10_halaman_konfirmasi.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/core/tugas_10_model_peserta.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas10/extensions/tugas_10_validator.dart';
 
 class Tugas10 extends StatefulWidget {
   const Tugas10({super.key});
