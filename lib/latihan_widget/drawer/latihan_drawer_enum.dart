@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_circleavatar.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_gridview.dart';
+import 'package:pelatihan_app_dev/latihan_widget/circle_avatar/latihan_circleavatar.dart';
+import 'package:pelatihan_app_dev/latihan_widget/gridview/latihan_gridview.dart';
 
 enum LatihanDrawerPage {
   avatar(

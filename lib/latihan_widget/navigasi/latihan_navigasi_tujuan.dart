@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi.dart';
+import 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi.dart';
 
 class HalamanTujuanNavigasi extends StatelessWidget {
   final MetodeNavigasi metode;

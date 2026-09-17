@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_bottom_navigator.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_column.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_drawer.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_listview.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_navigasi.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_rich_text.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_row.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_scaffold.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_singlechildscorollview.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_stateful.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_textfield.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_circle_avatar.dart';
-import 'package:pelatihan_app_dev/latihan_widget/latihan_widget_icon.dart';
+import 'package:pelatihan_app_dev/latihan_widget/bottom_navigator/latihan_bottom_navigator.dart';
+import 'package:pelatihan_app_dev/latihan_widget/column/latihan_column.dart';
+import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer.dart';
+import 'package:pelatihan_app_dev/latihan_widget/listview/latihan_listview.dart';
+import 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi.dart';
+import 'package:pelatihan_app_dev/latihan_widget/rich_text/latihan_rich_text.dart';
+import 'package:pelatihan_app_dev/latihan_widget/row/latihan_row.dart';
+import 'package:pelatihan_app_dev/latihan_widget/scaffold/latihan_scaffold.dart';
+import 'package:pelatihan_app_dev/latihan_widget/single_child_scroll_view/latihan_singlechildscorollview.dart';
+import 'package:pelatihan_app_dev/latihan_widget/stateful/latihan_stateful.dart';
+import 'package:pelatihan_app_dev/latihan_widget/textfield/latihan_textfield.dart';
+import 'package:pelatihan_app_dev/latihan_widget/circle_avatar/latihan_widget_circle_avatar.dart';
+import 'package:pelatihan_app_dev/latihan_widget/icon/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/penjelasan/penjelasan_model.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas_3.dart';
-import 'package:pelatihan_app_dev/tugas/ferry/tugas_5_button.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas3/tugas_3.dart';
+import 'package:pelatihan_app_dev/tugas/ferry/tugas5/tugas_5_button.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_1_Widget.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_2_layout.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_3_register.dart';
-import 'package:pelatihan_app_dev/tugas/hardi/tugas_4_listView.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas2/tugas_2_layout.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas3/tugas_3_register.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas4/tugas_4_listView.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
+import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 
 final List<PenjelasanItem> daftarPenjelasan = [
   PenjelasanItem(
@@ -892,6 +893,59 @@ SwitchListTile(
   );
 }''',
     halaman: const Tugas10(),
+  ),
+  PenjelasanItem(
+    title: 'Latihan SharedPreferences & ExtendedNavigator',
+    subtitle: 'Session management isLogin, splash screen auto-redirect, dan ekstensi navigasi',
+    kategori: 'Latihan',
+    icon: Icons.storage_rounded,
+    color: Colors.indigo,
+    deskripsi: 'Latihan ini mengajarkan pengelolaan sesi lokal (session management) pada Flutter menggunakan paket SharedPreferences melalui kelas utilitas PreferenceHandler dan implementasi ekstensi BuildContext bernama ExtendedNavigator. Alur aplikasi diawali dari SplashScreenDay15 yang secara otomatis memeriksa nilai status isLogin di penyimpanan lokal. Jika sesi aktif (true), aplikasi langsung mengalihkan rute ke HomeScreenDay15 menggunakan context.pushReplacement. Jika belum login (false), pengguna diarahkan ke LoginScreenDay15 untuk autentikasi dan menyimpan sesi baru.',
+    poinPenting: [
+      'WidgetsFlutterBinding.ensureInitialized() wajib dipanggil sebelum eksekusi async plugin native SharedPreferences di fungsi main',
+      'PreferenceHandler membungkus operasi SharedPreferences secara terpusat untuk setLogin(bool), isLogin, setUsername, dan logOut()',
+      'Ekstensi ExtendedNavigator pada BuildContext menyederhanakan kode navigasi (context.push, context.pushReplacement, context.pushAndRemoveAll, context.pop)',
+      'SplashScreen mengecek sesi lokal di background dan berpindah halaman secara halus tanpa meninggalkan riwayat splash di tumpukan route',
+      'Tombol Logout menghapus status session isLogin dan membersihkan seluruh riwayat navigasi dengan pushAndRemoveAll',
+      'Arsitektur modular memisahkan file enum, preference handler, ekstensi navigator, splash screen, login screen, home screen, dan detail screen',
+    ],
+    cropKode: r'''extension ExtendedNavigator on BuildContext {
+  Future<dynamic> push(Widget page, {String? name}) async {
+    return Navigator.push(
+      this,
+      MaterialPageRoute(
+        builder: (_) => page,
+        settings: RouteSettings(name: name ?? page.runtimeType.toString()),
+      ),
+    );
+  }
+
+  Future<dynamic> pushReplacement(Widget page, {String? name}) async {
+    return Navigator.pushReplacement(
+      this,
+      MaterialPageRoute(
+        builder: (_) => page,
+        settings: RouteSettings(name: name ?? page.runtimeType.toString()),
+      ),
+    );
+  }
+
+  Future<dynamic> pushAndRemoveAll(Widget page, {String? name}) async {
+    return Navigator.pushAndRemoveUntil(
+      this,
+      MaterialPageRoute(
+        builder: (_) => page,
+        settings: RouteSettings(name: name ?? page.runtimeType.toString()),
+      ),
+      (route) => false,
+    );
+  }
+
+  void pop([dynamic result]) {
+    Navigator.of(this).pop(result);
+  }
+}''',
+    halaman: const LatihanSharedPreferencesSession(),
   ),
 ];
 

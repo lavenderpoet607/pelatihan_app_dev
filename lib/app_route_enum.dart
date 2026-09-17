@@ -11,7 +11,8 @@ enum AppRoute {
   tugas10('/tugas10'),
   customWidget('/custom_widget'),
   customUi('/custom_ui'),
-  latihanTextFormFieldLogin('/latihan_textformfield_login');
+  latihanTextFormFieldLogin('/latihan_textformfield_login'),
+  latihanSharedPrefSession('/latihan_shared_pref_session');
 
   final String path;
   const AppRoute(this.path);
