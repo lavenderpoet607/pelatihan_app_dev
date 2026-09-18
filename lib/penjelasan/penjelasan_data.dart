@@ -27,6 +27,7 @@ import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 
 final List<PenjelasanItem> daftarPenjelasan = [
   PenjelasanItem(
@@ -990,6 +991,45 @@ SwitchListTile(
   }
 }''',
     halaman: const Tugas11(),
+  ),
+  PenjelasanItem(
+    title: 'Tugas: Database SQFLite',
+    subtitle: 'Pendaftaran Peserta & Database Lokal SQFLite (CRUD)',
+    kategori: 'Tugas',
+    icon: Icons.storage_rounded,
+    color: const Color(0xFF0D9488),
+    deskripsi: 'Tugas ini mengimplementasikan penyimpanan data permanen lokal menggunakan pustaka sqflite dan path dengan arsitektur bersih yang memisahkan Model data, DatabaseHelper (Singleton), dan Antarmuka Pengguna. Fitur meliputi: Form Pendaftaran dengan 5 input (Nama Lengkap, Email, Nomor HP, Password dengan toggle visibilitas, dan Asal Kota) yang dilengkapi validasi input form (GlobalKey<FormState>), DatabaseHelper yang menangani pembuatan tabel users, fungsi insert data (Create), dan query pengambilan data (Read). Tampilan peserta yang telah terdaftar dirender secara real-time menggunakan FutureBuilder dan ListView.builder yang otomatis diperbarui setelah proses pendaftaran berhasil.',
+    poinPenting: [
+      'Database Persistence permanen di perangkat menggunakan library sqflite dan path',
+      'Pola Singleton pada DatabaseHelper memastikan koneksi database tunggal dan efisien di seluruh aplikasi',
+      'Model Class Tugas12UserModel memiliki toMap() untuk menyimpan ke SQLite dan fromMap() untuk mengambil data ke UI',
+      'Validasi formulir lengkap untuk Nama, Email (@ dan .), Nomor HP opsional berformat angka, Password minimal 6 karakter, dan Asal Kota',
+      'Pengambilan data asinkron menggunakan FutureBuilder dan penampilan real-time dengan ListView.builder',
+      'Dilengkapi fitur Hapus Peserta terintegrasi query delete SQLite dan pembaruan UI otomatis',
+    ],
+    cropKode: '''class Tugas12DBHelper {
+  static final Tugas12DBHelper _instance = Tugas12DBHelper._internal();
+  factory Tugas12DBHelper() => _instance;
+  Tugas12DBHelper._internal();
+
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDB();
+    return _database!;
+  }
+
+  Future<int> insertUser(Tugas12UserModel user) async {
+    final db = await database;
+    return await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<Tugas12UserModel>> getAllUsers() async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db.query('users', orderBy: 'id DESC');
+    return results.map((map) => Tugas12UserModel.fromMap(map)).toList();
+  }
+}''',
+    halaman: const Tugas12(),
   ),
 ];
 

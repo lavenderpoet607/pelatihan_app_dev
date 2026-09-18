@@ -13,6 +13,7 @@ import 'package:pelatihan_app_dev/latihan_widget/circle_avatar/latihan_widget_ci
 import 'package:pelatihan_app_dev/latihan_widget/icon/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas3/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas2/tugas_2_layout.dart';
@@ -24,14 +25,13 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentua
 import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
 import 'package:pelatihan_app_dev/app_route_enum.dart';
+import 'package:pelatihan_app_dev/routing.dart';
 import 'package:pelatihan_app_dev/penjelasan/halaman_penjelasan.dart';
 import 'package:pelatihan_app_dev/penjelasan/halaman_katalog_penjelasan.dart';
 import 'package:pelatihan_app_dev/penjelasan/penjelasan_data.dart';
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
-import 'package:pelatihan_app_dev/custom_ui/halaman_custom_ui_studio.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
-import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/halaman_splash_session.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/core/preference_handler.dart'
     as habibi_pref;
@@ -74,45 +74,14 @@ class _MyAppState extends State<MyApp> {
           });
         },
       ),
-      routes: {
-        AppRoute.home.path: (context) => MultiWidgetApp(
-          isDarkMode: _isDarkMode,
-          onThemeChanged: (bool value) {
-            setState(() {
-              _isDarkMode = value;
-            });
-          },
-        ),
-        AppRoute.latihanNavigasi.path: (context) => const LatihanNavigasi(),
-        AppRoute.latihanDrawer.path: (context) => const LatihanDrawer(),
-        AppRoute.tujuanNavigasi.path: (context) =>
-            const HalamanTujuanNavigasi(metode: MetodeNavigasi.pushNamed),
-        AppRoute.tugas7.path: (context) => Tugas7(
-          isDarkMode: _isDarkMode,
-          onThemeChanged: (bool value) {
-            setState(() {
-              _isDarkMode = value;
-            });
-          },
-        ),
-        AppRoute.tugas8.path: (context) => Tugas8(
-          isDarkMode: _isDarkMode,
-          onThemeChanged: (bool value) {
-            setState(() {
-              _isDarkMode = value;
-            });
-          },
-        ),
-        AppRoute.tugas9.path: (context) => const Tugas9(),
-        AppRoute.tugas10.path: (context) => const Tugas10(),
-        AppRoute.tugas11.path: (context) => const Tugas11(),
-        AppRoute.customWidget.path: (context) => const HalamanCustomWidget(),
-        AppRoute.customUi.path: (context) => const HalamanCustomUiStudio(),
-        AppRoute.latihanTextFormFieldLogin.path: (context) =>
-            const LoginScreenDB(),
-        AppRoute.latihanSharedPrefSession.path: (context) =>
-            const SplashScreenDay15(),
-      },
+      routes: AppRouting.getRoutes(
+        isDarkMode: _isDarkMode,
+        onThemeChanged: (bool value) {
+          setState(() {
+            _isDarkMode = value;
+          });
+        },
+      ),
     );
   }
 }
@@ -360,6 +329,14 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       color: Color(0xFF2563EB),
       route: AppRoute.tugas11,
       page: Tugas11(),
+    ),
+    const AppMenuItem(
+      title: 'Tugas: Database SQFLite',
+      subtitle: 'Pendaftaran Peserta & Database Lokal SQFLite (CRUD)',
+      icon: Icons.storage_rounded,
+      color: Color(0xFF0D9488),
+      route: AppRoute.tugas12,
+      page: Tugas12(),
     ),
   ];
 
