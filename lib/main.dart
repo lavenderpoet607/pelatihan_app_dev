@@ -14,6 +14,7 @@ import 'package:pelatihan_app_dev/latihan_widget/icon/latihan_widget_icon.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas3/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas2/tugas_2_layout.dart';
@@ -33,7 +34,6 @@ import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
-import 'package:pelatihan_app_dev/tugas/screenshot/halaman_screenshot_tugas.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/core/preference_handler.dart'
     as habibi_pref;
 
@@ -134,13 +134,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   void _navPushRoute(AppRoute route) {
     Navigator.pushNamed(context, route.path);
-  }
-
-  void _bukaModeScreenshot(AppMenuItem item) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => HalamanScreenshotTugas(item: item)),
-    );
   }
 
   static const List<AppMenuItem> _latihanItems = [
@@ -388,6 +381,17 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       route: AppRoute.tugas12,
       page: Tugas12(),
     ),
+    const AppMenuItem(
+      title: 'Tugas 13: SQFLite CRUD Lengkap',
+      subtitle: 'Update, Delete, Dialog Konfirmasi & SnackBar Feedback',
+      icon: Icons.manage_accounts_rounded,
+      color: Color(0xFF0F766E),
+      nomorTugas: '13',
+      tag: 'Update & Delete',
+      pembuat: 'Hardi',
+      route: AppRoute.tugas13,
+      page: Tugas13(),
+    ),
   ];
 
   @override
@@ -574,24 +578,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 ),
                 title: Text(item.title),
                 dense: true,
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.camera_alt_rounded,
-                        size: 18,
-                        color: Color(0xFF0D9488),
-                      ),
-                      tooltip: 'Mode Screenshot',
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _bukaModeScreenshot(item);
-                      },
-                    ),
-                    const Icon(Icons.arrow_forward_ios_rounded, size: 12),
-                  ],
-                ),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 12),
                 onTap: () {
                   Navigator.pop(context);
                   if (item.route != null) {
@@ -648,11 +635,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
   }
 
   Widget _buildTugasHeader() {
-    final tugas10 = _tugasItems.firstWhere(
-      (e) => e.nomorTugas == '10',
-      orElse: () => _tugasItems.first,
-    );
-
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(18),
@@ -708,36 +690,21 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                   ],
                 ),
               ),
-              InkWell(
-                onTap: () => _bukaModeScreenshot(tugas10),
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0D9488),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.camera_alt_rounded,
-                        size: 12,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 4),
-                      Text(
-                        'Screenshot Tugas 10',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(30),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  '${_tugasItems.length} Tugas',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -754,7 +721,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
           ),
           const SizedBox(height: 4),
           Text(
-            'Rangkaian tugas mulai dari UI dasar hingga database SQLite. Gunakan Mode Screenshot untuk mengcapture kode + UI secara otomatis.',
+            'Rangkaian tugas mulai dari perancangan UI dasar, navigasi, interaksi formulir, hingga persistensi data lokal SQLite.',
             style: TextStyle(
               color: Colors.white.withAlpha(200),
               fontSize: 12,
@@ -865,17 +832,6 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                       ),
                     ),
                   IconButton(
-                    icon: const Icon(
-                      Icons.camera_alt_rounded,
-                      color: Color(0xFF0D9488),
-                      size: 20,
-                    ),
-                    tooltip: 'Mode Screenshot (Kode + UI)',
-                    constraints: const BoxConstraints(),
-                    padding: const EdgeInsets.only(left: 6),
-                    onPressed: () => _bukaModeScreenshot(item),
-                  ),
-                  IconButton(
                     icon: Icon(
                       Icons.menu_book_rounded,
                       color: item.color,
@@ -883,7 +839,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                     ),
                     tooltip: 'Penjelasan & Potongan Kode',
                     constraints: const BoxConstraints(),
-                    padding: const EdgeInsets.only(left: 4),
+                    padding: const EdgeInsets.only(left: 6),
                     onPressed: () {
                       final penjelasan =
                           cariPenjelasanItem(item.title) ??
@@ -946,87 +902,33 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
                 ],
               ),
               const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        if (item.route != null) {
-                          _navPushRoute(item.route!);
-                        } else {
-                          _navigateTo(item.page);
-                        }
-                      },
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: item.color.withAlpha(15),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Buka Halaman',
-                              style: TextStyle(
-                                color: item.color,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Icon(
-                              Icons.arrow_forward_rounded,
-                              size: 14,
-                              color: item.color,
-                            ),
-                          ],
-                        ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: item.color.withAlpha(12),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Buka Halaman Tugas',
+                      style: TextStyle(
+                        color: item.color,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  InkWell(
-                    onTap: () => _bukaModeScreenshot(item),
-                    borderRadius: BorderRadius.circular(8),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0D9488).withAlpha(15),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: const Color(0xFF0D9488).withAlpha(60),
-                        ),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.camera_alt_rounded,
-                            size: 14,
-                            color: Color(0xFF0D9488),
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            'Screenshot',
-                            style: TextStyle(
-                              color: Color(0xFF0D9488),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Icon(
+                      Icons.arrow_forward_rounded,
+                      size: 14,
+                      color: item.color,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

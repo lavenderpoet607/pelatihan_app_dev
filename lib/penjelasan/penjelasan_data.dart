@@ -28,6 +28,7 @@ import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_lat
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
 
 final List<PenjelasanItem> daftarPenjelasan = [
   PenjelasanItem(
@@ -1031,11 +1032,58 @@ SwitchListTile(
 }''',
     halaman: const Tugas12(),
   ),
+  PenjelasanItem(
+    title: 'Tugas 13: SQFLite CRUD Lengkap',
+    subtitle: 'Update, Delete, Dialog Konfirmasi & SnackBar Feedback',
+    kategori: 'Tugas',
+    icon: Icons.manage_accounts_rounded,
+    color: const Color(0xFF0F766E),
+    deskripsi: 'Tugas ini menyempurnakan implementasi database SQFLite lokal dengan melengkapi seluruh siklus data CRUD melalui penambahan fungsi Update dan Delete. Fitur utama mencakup: Tombol Edit pada setiap item ListView yang melakukan auto-populate data lama kembali ke dalam controller formulir, banner indikator Mode Edit adaptif dengan tombol Batal Edit, eksekusi update database dengan klausa where: "id = ?" dan whereArgs: [user.id] berdasarkan Primary Key yang unik, tombol Hapus yang dilengkapi AlertDialog konfirmasi untuk mencegah penghapusan data secara tidak sengaja, pembaruan antarmuka secara instan pasca-eksekusi, serta umpan balik visual menggunakan SnackBar untuk memberikan informasi keberhasilan kepada pengguna.',
+    poinPenting: [
+      'Implementasi fungsi Update dan Delete pada SQLite menggunakan klausa berparameter where: "id = ?" dan whereArgs untuk keamanan SQL injection',
+      'Pemanfaatan Primary Key (id unik) sebagai referensi mutlak saat mengubah atau menghapus baris data',
+      'State Interaction dua arah antara item ListView dan Form (mengirim objek data dan auto-populate TextEditingController)',
+      'Banner status dan tombol formulir adaptif yang otomatis beralih antara "Simpan Data Baru" dan "Perbarui Data (Update)"',
+      'Penerapan AlertDialog konfirmasi sebelum aksi penghapusan permanen guna mencegah accidental deletion',
+      'Feedback visual instan menggunakan SnackBar sukses setelah operasi Update, Delete, maupun Insert berhasil',
+    ],
+    cropKode: '''Future<int> updateUser(Tugas13UserModel user) async {
+  final db = await database;
+  return await db.update(
+    'users',
+    user.toMap(),
+    where: 'id = ?',
+    whereArgs: [user.id],
+  );
+}
+
+Future<int> deleteUser(int id) async {
+  final db = await database;
+  return await db.delete(
+    'users',
+    where: 'id = ?',
+    whereArgs: [id],
+  );
+}''',
+    halaman: const Tugas13(),
+  ),
 ];
 
 PenjelasanItem? cariPenjelasanItem(String title) {
+  final target = title.trim().toLowerCase();
   for (final item in daftarPenjelasan) {
-    if (item.title.trim().toLowerCase() == title.trim().toLowerCase()) {
+    final itemTitle = item.title.trim().toLowerCase();
+    if (itemTitle == target ||
+        itemTitle.replaceFirst(
+              RegExp(r'^tugas\s*\d+\s*(\([a-z0-9]+\))?:\s*'),
+              'tugas: ',
+            ) ==
+            target ||
+        target.replaceFirst(
+              RegExp(r'^tugas\s*\d+\s*(\([a-z0-9]+\))?:\s*'),
+              'tugas: ',
+            ) ==
+            itemTitle) {
       return item;
     }
   }

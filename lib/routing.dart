@@ -9,6 +9,7 @@ import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/custom_ui/halaman_custom_ui_studio.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
@@ -39,6 +40,7 @@ class AppRouting {
       AppRoutes.tugas10: (context) => const Tugas10(),
       AppRoutes.tugas11: (context) => const Tugas11(),
       AppRoutes.tugas12: (context) => const Tugas12(),
+      AppRoutes.tugas13: (context) => const Tugas13(),
       AppRoutes.customWidget: (context) => const HalamanCustomWidget(),
       AppRoutes.customUi: (context) => const HalamanCustomUiStudio(),
       AppRoutes.latihanTextFormFieldLogin: (context) => const LoginScreenDB(),
