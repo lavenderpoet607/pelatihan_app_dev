@@ -33,6 +33,7 @@ import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_shared_preferences.dart';
 import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/core/preference_handler.dart';
+import 'package:pelatihan_app_dev/tugas/screenshot/halaman_screenshot_tugas.dart';
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/core/preference_handler.dart'
     as habibi_pref;
 
@@ -93,6 +94,9 @@ class AppMenuItem {
   final Color color;
   final Widget page;
   final AppRoute? route;
+  final String? nomorTugas;
+  final String? tag;
+  final String? pembuat;
 
   const AppMenuItem({
     required this.title,
@@ -101,6 +105,9 @@ class AppMenuItem {
     required this.color,
     required this.page,
     this.route,
+    this.nomorTugas,
+    this.tag,
+    this.pembuat,
   });
 }
 
@@ -127,6 +134,13 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   void _navPushRoute(AppRoute route) {
     Navigator.pushNamed(context, route.path);
+  }
+
+  void _bukaModeScreenshot(AppMenuItem item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => HalamanScreenshotTugas(item: item)),
+    );
   }
 
   static const List<AppMenuItem> _latihanItems = [
@@ -243,52 +257,73 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   List<AppMenuItem> get _tugasItems => <AppMenuItem>[
     const AppMenuItem(
-      title: 'Tugas: Profil Saya',
+      title: 'Tugas 1: Profil Saya',
       subtitle: 'Biodata diri, foto profil, dan info kontak',
       icon: Icons.person_rounded,
       color: Color(0xFF6366F1),
+      nomorTugas: '01',
+      tag: 'Profil Diri',
+      pembuat: 'Hardi',
       page: Tugas1Widget(),
     ),
     const AppMenuItem(
-      title: 'Tugas: Layout Flutter Detail Toko',
+      title: 'Tugas 2: Layout Flutter Detail Toko',
       subtitle: 'Harumony Mystic Emporium - Toko buku',
       icon: Icons.storefront_rounded,
       color: Color(0xFFEC4899),
+      nomorTugas: '02',
+      tag: 'Detail Toko',
+      pembuat: 'Hardi',
       page: Tugas2Layout(),
     ),
     const AppMenuItem(
-      title: 'Tugas: Luminous News',
+      title: 'Tugas 3: Luminous News',
       subtitle: 'Portal artikel & berita masa depan',
       icon: Icons.newspaper_rounded,
       color: Color(0xFF06B6D4),
+      nomorTugas: '03',
+      tag: 'Luminous News',
+      pembuat: 'Ferry',
       page: Tugas3Lumi(),
     ),
     const AppMenuItem(
-      title: 'Tugas: Form Input & Penataan Grid',
+      title: 'Tugas 3: Form Input & Penataan Grid',
       subtitle: 'Layouting Lanjutan',
       icon: Icons.input_rounded,
       color: Color(0xFFF97316),
+      nomorTugas: '03',
+      tag: 'Form & Grid',
+      pembuat: 'Hardi',
       page: Tugas3(),
     ),
     const AppMenuItem(
-      title: 'Tugas: ListView & ListTile',
+      title: 'Tugas 4: ListView & ListTile',
       subtitle: 'Optimalisasi Daftar dengan ListView & ListTile',
       icon: Icons.view_list_rounded,
       color: Color(0xFF10B981),
+      nomorTugas: '04',
+      tag: 'ListView',
+      pembuat: 'Hardi',
       page: Tugas4(),
     ),
     const AppMenuItem(
-      title: 'Tugas: Event Handling',
+      title: 'Tugas 5: Event Handling',
       subtitle: 'Interaksi Pengguna & Event Handling',
       icon: Icons.event_rounded,
       color: Color(0xFFF59E0B),
+      nomorTugas: '05',
+      tag: 'Event Handling',
+      pembuat: 'Ferry',
       page: Tugas5(),
     ),
     AppMenuItem(
-      title: 'Tugas: Form Input',
+      title: 'Tugas 7: Form Input',
       subtitle: 'Interaktif dengan Navigasi Drawer',
       icon: Icons.text_format_rounded,
-      color: const Color(0xFFF59E0B),
+      color: const Color(0xFFE11D48),
+      nomorTugas: '07',
+      tag: 'Form & Drawer',
+      pembuat: 'Hardi',
       route: AppRoute.tugas7,
       page: Tugas7(
         onThemeChanged: widget.onThemeChanged,
@@ -296,45 +331,60 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       ),
     ),
     AppMenuItem(
-      title: 'Tugas: Navigasi Bawah (Bottom Nav)',
+      title: 'Tugas 8: Navigasi Bawah (Bottom Nav)',
       subtitle: 'BottomNavigationBar & Conditional Drawer (Ridho)',
       icon: Icons.tab_rounded,
       color: const Color(0xFF0284C7),
+      nomorTugas: '08',
+      tag: 'Bottom Nav',
+      pembuat: 'Ferry',
       route: AppRoute.tugas8,
       page: Tugas8(
         onThemeChanged: widget.onThemeChanged,
         isDarkMode: widget.isDarkMode,
       ),
     ),
-    AppMenuItem(
-      title: 'Tugas: Daftar Kategori',
+    const AppMenuItem(
+      title: 'Tugas 9: Daftar Kategori',
       subtitle: 'ListView.builder: List, Map, dan Model',
       icon: Icons.list_alt_rounded,
-      color: Color(0xFF10B981),
+      color: Color(0xFF059669),
+      nomorTugas: '09',
+      tag: 'ListView Model',
+      pembuat: 'Ferry',
       route: AppRoute.tugas9,
       page: Tugas9(),
     ),
-    AppMenuItem(
-      title: 'Tugas: Formulir Pendaftaran',
+    const AppMenuItem(
+      title: 'Tugas 10: Formulir Pendaftaran',
       subtitle: 'Validasi form, AlertDialog ringkasan & halaman konfirmasi',
       icon: Icons.app_registration_rounded,
       color: Color(0xFF2563EB),
+      nomorTugas: '10',
+      tag: 'Form Validation',
+      pembuat: 'Hardi',
       route: AppRoute.tugas10,
       page: Tugas10(),
     ),
-    AppMenuItem(
-      title: 'Tugas: Shared Preferences',
+    const AppMenuItem(
+      title: 'Tugas 11: Shared Preferences',
       subtitle: 'Implementasi Sesi Pengguna (Shared Preferences)',
       icon: Icons.lock,
-      color: Color(0xFF2563EB),
+      color: Color(0xFF7C3AED),
+      nomorTugas: '11',
+      tag: 'Shared Pref',
+      pembuat: 'Habibi',
       route: AppRoute.tugas11,
       page: Tugas11(),
     ),
     const AppMenuItem(
-      title: 'Tugas: Database SQFLite',
+      title: 'Tugas 12: Database SQFLite',
       subtitle: 'Pendaftaran Peserta & Database Lokal SQFLite (CRUD)',
       icon: Icons.storage_rounded,
       color: Color(0xFF0D9488),
+      nomorTugas: '12',
+      tag: 'SQLite CRUD',
+      pembuat: 'Hardi',
       route: AppRoute.tugas12,
       page: Tugas12(),
     ),
@@ -342,15 +392,7 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
 
   @override
   Widget build(BuildContext context) {
-    final currentList = _currentSection == AppSection.latihan
-        ? _latihanItems
-        : _tugasItems;
     final currentTitle = _currentSection.title;
-
-    final _ = Tugas7(
-      onThemeChanged: widget.onThemeChanged,
-      isDarkMode: widget.isDarkMode,
-    );
 
     return Scaffold(
       appBar: _currentSection == AppSection.customStudio
@@ -518,9 +560,38 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
             ),
             ..._tugasItems.map(
               (item) => ListTile(
-                leading: Icon(item.icon, color: item.color),
+                leading: CircleAvatar(
+                  radius: 14,
+                  backgroundColor: item.color.withAlpha(30),
+                  child: Text(
+                    item.nomorTugas ?? 'T',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: item.color,
+                    ),
+                  ),
+                ),
                 title: Text(item.title),
                 dense: true,
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.camera_alt_rounded,
+                        size: 18,
+                        color: Color(0xFF0D9488),
+                      ),
+                      tooltip: 'Mode Screenshot',
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _bukaModeScreenshot(item);
+                      },
+                    ),
+                    const Icon(Icons.arrow_forward_ios_rounded, size: 12),
+                  ],
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   if (item.route != null) {
@@ -536,18 +607,23 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       ),
       body: _currentSection == AppSection.customStudio
           ? const HalamanCustomWidget()
+          : _currentSection == AppSection.tugas
+          ? ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              itemCount: _tugasItems.length + 1,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return _buildTugasHeader();
+                }
+                final item = _tugasItems[index - 1];
+                return _buildTugasCard(item);
+              },
+            )
           : ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              itemCount: currentList.length,
+              itemCount: _latihanItems.length,
               itemBuilder: (context, index) {
-                final item = currentList[index];
-                if (_currentSection == AppSection.latihan && index == 0) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [_buildMenuItemCard(item)],
-                  );
-                }
-
+                final item = _latihanItems[index];
                 return _buildMenuItemCard(item);
               },
             ),
@@ -567,6 +643,394 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
               ),
             )
             .toList(),
+      ),
+    );
+  }
+
+  Widget _buildTugasHeader() {
+    final tugas10 = _tugasItems.firstWhere(
+      (e) => e.nomorTugas == '10',
+      orElse: () => _tugasItems.first,
+    );
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF0F172A).withAlpha(40),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.tealAccent.withAlpha(35),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.tealAccent.withAlpha(90)),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.assignment_turned_in_rounded,
+                      size: 14,
+                      color: Colors.tealAccent,
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      'TUGAS MANDIRI',
+                      style: TextStyle(
+                        color: Colors.tealAccent,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () => _bukaModeScreenshot(tugas10),
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF0D9488),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.camera_alt_rounded,
+                        size: 12,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        'Screenshot Tugas 10',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Koleksi Tugas Mandiri Flutter',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Rangkaian tugas mulai dari UI dasar hingga database SQLite. Gunakan Mode Screenshot untuk mengcapture kode + UI secara otomatis.',
+            style: TextStyle(
+              color: Colors.white.withAlpha(200),
+              fontSize: 12,
+              height: 1.4,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTugasCard(AppMenuItem item) {
+    return Card(
+      elevation: 0,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: item.color.withAlpha(60), width: 1.2),
+      ),
+      margin: const EdgeInsets.only(bottom: 12),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          if (item.route != null) {
+            _navPushRoute(item.route!);
+          } else {
+            _navigateTo(item.page);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 9,
+                      vertical: 3,
+                    ),
+                    decoration: BoxDecoration(
+                      color: item.color.withAlpha(25),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: item.color.withAlpha(80)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.task_alt_rounded,
+                          size: 13,
+                          color: item.color,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          'TUGAS ${item.nomorTugas ?? ""}',
+                          style: TextStyle(
+                            color: item.color,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (item.tag != null) ...[
+                    const SizedBox(width: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: Text(
+                        item.tag!,
+                        style: TextStyle(
+                          color: Colors.grey.shade700,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                  const Spacer(),
+                  if (item.pembuat != null)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: item.color.withAlpha(20),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        item.pembuat!,
+                        style: TextStyle(
+                          color: item.color,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.camera_alt_rounded,
+                      color: Color(0xFF0D9488),
+                      size: 20,
+                    ),
+                    tooltip: 'Mode Screenshot (Kode + UI)',
+                    constraints: const BoxConstraints(),
+                    padding: const EdgeInsets.only(left: 6),
+                    onPressed: () => _bukaModeScreenshot(item),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.menu_book_rounded,
+                      color: item.color,
+                      size: 20,
+                    ),
+                    tooltip: 'Penjelasan & Potongan Kode',
+                    constraints: const BoxConstraints(),
+                    padding: const EdgeInsets.only(left: 4),
+                    onPressed: () {
+                      final penjelasan =
+                          cariPenjelasanItem(item.title) ??
+                          cariPenjelasanItem(
+                            item.title.replaceFirst(
+                              RegExp(r'^Tugas\s*\d+\s*(\([A-Za-z0-9]+\))?:\s*'),
+                              'Tugas: ',
+                            ),
+                          );
+                      if (penjelasan != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => HalamanPenjelasan(item: penjelasan),
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: item.color.withAlpha(25),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(item.icon, color: item.color, size: 24),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.title,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF1E293B),
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          item.subtitle,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                            height: 1.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        if (item.route != null) {
+                          _navPushRoute(item.route!);
+                        } else {
+                          _navigateTo(item.page);
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: item.color.withAlpha(15),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Buka Halaman',
+                              style: TextStyle(
+                                color: item.color,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Icon(
+                              Icons.arrow_forward_rounded,
+                              size: 14,
+                              color: item.color,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  InkWell(
+                    onTap: () => _bukaModeScreenshot(item),
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF0D9488).withAlpha(15),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: const Color(0xFF0D9488).withAlpha(60),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.camera_alt_rounded,
+                            size: 14,
+                            color: Color(0xFF0D9488),
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            'Screenshot',
+                            style: TextStyle(
+                              color: Color(0xFF0D9488),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
