@@ -10,6 +10,9 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dar
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas14/tugas_14_pokemon_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/dio_public_api/latihan_dio_public_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/google_maps/latihan_google_maps.dart';
 import 'package:pelatihan_app_dev/custom_widget/halaman_custom_widget.dart';
 import 'package:pelatihan_app_dev/custom_ui/halaman_custom_ui_studio.dart';
 import 'package:pelatihan_app_dev/latihan_widget/textformfield_login/halaman_latihan_login_db.dart';
@@ -41,11 +44,14 @@ class AppRouting {
       AppRoutes.tugas11: (context) => const Tugas11(),
       AppRoutes.tugas12: (context) => const Tugas12(),
       AppRoutes.tugas13: (context) => const Tugas13(),
+      AppRoutes.tugas14: (context) => const Tugas14(),
       AppRoutes.customWidget: (context) => const HalamanCustomWidget(),
       AppRoutes.customUi: (context) => const HalamanCustomUiStudio(),
       AppRoutes.latihanTextFormFieldLogin: (context) => const LoginScreenDB(),
       AppRoutes.latihanSharedPrefSession: (context) =>
           const SplashScreenDay15(),
+      AppRoutes.latihanPublicApiDio: (context) => const LatihanDioPublicApi(),
+      AppRoutes.latihanGoogleMaps: (context) => const LatihanGoogleMaps(),
     };
   }
 

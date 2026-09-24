@@ -12,10 +12,13 @@ enum AppRoute {
   tugas11('/tugas11'),
   tugas12('/tugas12'),
   tugas13('/tugas13'),
+  tugas14('/tugas14'),
   customWidget('/custom_widget'),
   customUi('/custom_ui'),
   latihanTextFormFieldLogin('/latihan_textformfield_login'),
-  latihanSharedPrefSession('/latihan_shared_pref_session');
+  latihanSharedPrefSession('/latihan_shared_pref_session'),
+  latihanPublicApiDio('/latihan_public_api_dio'),
+  latihanGoogleMaps('/latihan_google_maps');
 
   final String path;
 

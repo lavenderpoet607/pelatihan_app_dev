@@ -3,6 +3,14 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+val localProperties = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) {
+        load(f.inputStream())
+    }
+}
+
 android {
     namespace = "com.example.pelatihan_app_dev"
     compileSdk = flutter.compileSdkVersion
@@ -19,6 +27,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["GOOGLE_MAPS_API_KEY"] =
+        localProperties.getProperty("GOOGLE_MAPS_API_KEY", "")
     }
 
     buildTypes {

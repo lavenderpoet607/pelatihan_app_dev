@@ -15,6 +15,9 @@ import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferenc
 import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas14/tugas_14_pokemon_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/dio_public_api/latihan_dio_public_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/google_maps/latihan_google_maps.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas3/tugas_3.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas2/tugas_2_layout.dart';
@@ -246,6 +249,22 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       route: AppRoute.latihanSharedPrefSession,
       page: LatihanSharedPreferencesSession(),
     ),
+    AppMenuItem(
+      title: 'Latihan Public API (Dio)',
+      subtitle: 'Permintaan data HTTP GET, Dio Client, dan FutureBuilder',
+      icon: Icons.cloud_sync_rounded,
+      color: Colors.blueAccent,
+      route: AppRoute.latihanPublicApiDio,
+      page: LatihanDioPublicApi(),
+    ),
+    AppMenuItem(
+      title: 'Latihan Google Maps',
+      subtitle: 'GoogleMap, Markers, Kontrol Kamera, dan Tipe Layer Peta',
+      icon: Icons.map_rounded,
+      color: Color(0xFF0F766E),
+      route: AppRoute.latihanGoogleMaps,
+      page: LatihanGoogleMaps(),
+    ),
   ];
 
   List<AppMenuItem> get _tugasItems => <AppMenuItem>[
@@ -391,6 +410,17 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       pembuat: 'Hardi',
       route: AppRoute.tugas13,
       page: Tugas13(),
+    ),
+    const AppMenuItem(
+      title: 'Tugas 14: Integrasi Public API',
+      subtitle: 'PokeAPI v2, Parsing JSON, Dio Client & Detail Pokemon',
+      icon: Icons.catching_pokemon_rounded,
+      color: Color(0xFFDC2626),
+      nomorTugas: '14',
+      tag: 'Public API',
+      pembuat: 'Hardi',
+      route: AppRoute.tugas14,
+      page: Tugas14(),
     ),
   ];
 

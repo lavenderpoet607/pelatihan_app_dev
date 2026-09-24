@@ -29,6 +29,9 @@ import 'package:pelatihan_app_dev/latihan_widget/shared_pref_session/latihan_sha
 import 'package:pelatihan_app_dev/tugas/habibi/tugas11/tugas_11_shared_preferences.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas14/tugas_14_pokemon_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/dio_public_api/latihan_dio_public_api.dart';
+import 'package:pelatihan_app_dev/latihan_widget/google_maps/latihan_google_maps.dart';
 
 final List<PenjelasanItem> daftarPenjelasan = [
   PenjelasanItem(
@@ -951,6 +954,60 @@ SwitchListTile(
     halaman: const LatihanSharedPreferencesSession(),
   ),
   PenjelasanItem(
+    title: 'Latihan Public API (Dio)',
+    subtitle: 'Permintaan data HTTP GET, Dio Client, dan FutureBuilder',
+    kategori: 'Latihan',
+    icon: Icons.cloud_sync_rounded,
+    color: Colors.blueAccent,
+    deskripsi: 'Latihan ini mengajarkan konsep dasar networking dan konsumsi REST API publik pada Flutter menggunakan pustaka Dio. Aplikasi melakukan HTTP GET request secara asinkron ke server PokeAPI untuk mengambil 20 data Pokemon pertama. Hasil response JSON dipetakan menjadi list map dan ditampilkan secara reaktif menggunakan FutureBuilder, lengkap dengan penanganan status loading indikator, penanganan kesalahan koneksi (error state) dengan tombol coba lagi, serta pembaruan data secara fleksibel menggunakan widget RefreshIndicator.',
+    poinPenting: [
+      'Penggunaan library Dio untuk mengeksekusi HTTP GET request secara asinkron',
+      'Penanganan status asinkron reaktif menggunakan FutureBuilder (ConnectionState.waiting, hasError, dan hasData)',
+      'Parsing struktur data JSON bertingkat (results) menjadi List<Map<String, dynamic>>',
+      'Widget Image.network untuk merender gambar remote dinamis dari CDN/server eksternal',
+      'Penerapan widget RefreshIndicator untuk fitur pull-to-refresh data API',
+      'Pemisahan tampilan status error dengan pesan yang informatif dan tombol Coba Lagi',
+    ],
+    cropKode: '''Future<List<Map<String, dynamic>>> _fetchData() async {
+  final response = await _dio.get('https://pokeapi.co/api/v2/pokemon?limit=20');
+  if (response.statusCode == 200 && response.data != null) {
+    final List rawList = response.data['results'] as List;
+    return rawList.map((item) => item as Map<String, dynamic>).toList();
+  }
+  throw Exception('Gagal mengambil data dari server');
+}''',
+    halaman: const LatihanDioPublicApi(),
+  ),
+  PenjelasanItem(
+    title: 'Latihan Google Maps',
+    subtitle: 'GoogleMap, Markers, Kontrol Kamera, dan Tipe Layer Peta',
+    kategori: 'Latihan',
+    icon: Icons.map_rounded,
+    color: const Color(0xFF0F766E),
+    deskripsi: 'Latihan ini mengimplementasikan integrasi peta digital interaktif menggunakan pustaka resmi google_maps_flutter. Menampilkan peta interaktif berpusat pada Monumen Nasional (Monas) Jakarta dengan berbagai marker tempat bersejarah, kustomisasi ikon warna (BitmapDescriptor hue), InfoWindow interaktif saat marker ditekan, penggambaran radius area dengan Circle, dan rute jalur dengan Polyline. Selain itu pengguna dapat berganti jenis peta (Normal, Satelit, Terrain, Hybrid), mengaktifkan visualisasi trafik lalu lintas secara langsung, serta mengontrol pergerakan kamera secara halus (zoom in/out, animate camera) melalui kontrol floating action button.',
+    poinPenting: [
+      'Inisialisasi widget GoogleMap dengan CameraPosition awal (target LatLng dan zoom level)',
+      'Menambahkan koleksi Marker kustom dengan BitmapDescriptor hue dan event onTap untuk menampilkan detail informasi',
+      'Penggunaan Circle untuk menggambarkan radius jangkauan geografis dan Polyline untuk visualisasi rute jalan',
+      'Manipulasi posisi dan sudut pandang kamera secara dinamis menggunakan GoogleMapController dan CameraUpdate (tilt, bearing, zoom)',
+      'Penggantian mode layer tampilan peta secara real-time (MapType.normal, satellite, terrain, hybrid)',
+      'Konfigurasi layer lalu lintas (trafficEnabled) dan floating controller interaktif untuk navigasi peta',
+    ],
+    cropKode: '''GoogleMap(
+  initialCameraPosition: const CameraPosition(
+    target: LatLng(-6.175392, 106.827153),
+    zoom: 14.0,
+  ),
+  mapType: _currentMapType,
+  markers: _markers,
+  circles: _circles,
+  polylines: _polylines,
+  trafficEnabled: _trafficEnabled,
+  onMapCreated: (controller) => _mapController = controller,
+)''',
+    halaman: const LatihanGoogleMaps(),
+  ),
+  PenjelasanItem(
     title: 'Tugas: Shared Preferences',
     subtitle: 'Implementasi Sesi Pengguna (Shared Preferences)',
     kategori: 'Tugas',
@@ -1066,6 +1123,28 @@ Future<int> deleteUser(int id) async {
   );
 }''',
     halaman: const Tugas13(),
+  ),
+  PenjelasanItem(
+    title: 'Tugas 14: Integrasi Public API & Parsing JSON',
+    subtitle: 'Dio HTTP Client, JSON Model, FutureBuilder & Pokemon API',
+    kategori: 'Tugas',
+    icon: Icons.catching_pokemon_rounded,
+    color: const Color(0xFFDC2626),
+    deskripsi: 'Tugas ini mengimplementasikan integrasi Public API PokeAPI v2 menggunakan library Dio sebagai HTTP client dan konversi JSON ke Model Dart melalui factory constructor fromJson. Aplikasi mengambil daftar Pokemon lengkap dengan gambar official artwork beresolusi tinggi, nomor Pokédex unik, serta fitur pencarian real-time dan pull-to-refresh menggunakan RefreshIndicator. Tampilan ditata rapi menggunakan Card, Row, dan Column dengan penanganan status asinkron FutureBuilder (loading indicator, error connection handling, dan empty search state). Saat item diklik, pengguna diarahkan ke Halaman Detail yang menyajikan statistik base stat, kemampuan, tinggi, berat, dan tipe elemen secara interaktif.',
+    poinPenting: [
+      'Penggunaan library Dio dengan konfigurasi connectTimeout, receiveTimeout, dan error handling berbasis DioException',
+      'Pemisahan arsitektur bersih: Model Class (PokemonItemModel & PokemonDetailModel), Networking Service (PokemonApiService), dan UI Screen',
+      'Parsing JSON otomatis dengan factory fromJson memetakan field API ke tipe data Dart yang aman',
+      'Pemanfaatan FutureBuilder untuk manajemen state asinkron: loading CircularProgressIndicator, error handling, dan data success',
+      'Penampilan gambar remote Image.network dilengkapi loadingBuilder dan errorBuilder fallback',
+      'Fitur interaktif bonus: Search bar filter instan, RefreshIndicator pull-to-refresh, dan navigasi ke Halaman Detail Pokemon',
+    ],
+    cropKode: '''final response = await _dio.get('/pokemon', queryParameters: {'limit': 50});
+if (response.statusCode == 200 && response.data != null) {
+  final List results = response.data['results'] as List;
+  return results.map((item) => PokemonItemModel.fromJson(item)).toList();
+}''',
+    halaman: const Tugas14(),
   ),
 ];
 
