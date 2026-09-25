@@ -12,6 +12,7 @@ class AppRoutes {
   static const String tugas12 = '/tugas12';
   static const String tugas13 = '/tugas13';
   static const String tugas14 = '/tugas14';
+  static const String tugas15 = '/tugas15';
   static const String customWidget = '/custom_widget';
   static const String customUi = '/custom_ui';
   static const String latihanTextFormFieldLogin =

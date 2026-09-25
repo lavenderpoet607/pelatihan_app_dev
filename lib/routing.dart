@@ -3,6 +3,7 @@ import 'package:pelatihan_app_dev/routes.dart';
 import 'package:pelatihan_app_dev/main.dart';
 import 'package:pelatihan_app_dev/latihan_widget/drawer/latihan_drawer.dart';
 import 'package:pelatihan_app_dev/latihan_widget/navigasi/latihan_navigasi.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas15/tugas_15_absensi.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas7/tugas_7_syarat_dan_ketentuan.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas8/tugas_8.dart';
 import 'package:pelatihan_app_dev/tugas/ferry/tugas9/tugas_9.dart';
@@ -45,6 +46,7 @@ class AppRouting {
       AppRoutes.tugas12: (context) => const Tugas12(),
       AppRoutes.tugas13: (context) => const Tugas13(),
       AppRoutes.tugas14: (context) => const Tugas14(),
+      AppRoutes.tugas15: (context) => const Tugas15(),
       AppRoutes.customWidget: (context) => const HalamanCustomWidget(),
       AppRoutes.customUi: (context) => const HalamanCustomUiStudio(),
       AppRoutes.latihanTextFormFieldLogin: (context) => const LoginScreenDB(),

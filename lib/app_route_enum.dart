@@ -13,6 +13,7 @@ enum AppRoute {
   tugas12('/tugas12'),
   tugas13('/tugas13'),
   tugas14('/tugas14'),
+  tugas15('/tugas15'),
   customWidget('/custom_widget'),
   customUi('/custom_ui'),
   latihanTextFormFieldLogin('/latihan_textformfield_login'),

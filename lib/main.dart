@@ -16,6 +16,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas10/tugas_10_register_form.dar
 import 'package:pelatihan_app_dev/tugas/hardi/tugas12/tugas_12_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas13/tugas_13_database_sqflite.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas14/tugas_14_pokemon_api.dart';
+import 'package:pelatihan_app_dev/tugas/hardi/tugas15/tugas_15_absensi.dart';
 import 'package:pelatihan_app_dev/latihan_widget/dio_public_api/latihan_dio_public_api.dart';
 import 'package:pelatihan_app_dev/latihan_widget/google_maps/latihan_google_maps.dart';
 import 'package:pelatihan_app_dev/tugas/hardi/tugas1/tugas_1_Widget.dart';
@@ -421,6 +422,20 @@ class _MultiWidgetAppState extends State<MultiWidgetApp> {
       pembuat: 'Hardi',
       route: AppRoute.tugas14,
       page: Tugas14(),
+    ),
+    AppMenuItem(
+      title: 'Tugas 15: Assessment Absensi PPKD',
+      subtitle: 'Autentikasi, Geolocator GPS, Google Maps & Riwayat Absen',
+      icon: Icons.fingerprint_rounded,
+      color: const Color(0xFF4F46E5),
+      nomorTugas: '15',
+      tag: 'Absensi API',
+      pembuat: 'Hardi',
+      route: AppRoute.tugas15,
+      page: Tugas15(
+        isDarkMode: widget.isDarkMode,
+        onThemeChanged: widget.onThemeChanged,
+      ),
     ),
   ];
 
