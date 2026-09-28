@@ -10,10 +10,7 @@ import 'package:pelatihan_app_dev/tugas/hardi/tugas15/services/session_manager.d
 class DashboardScreen extends StatefulWidget {
   final VoidCallback onOpenHistory;
 
-  const DashboardScreen({
-    super.key,
-    required this.onOpenHistory,
-  });
+  const DashboardScreen({super.key, required this.onOpenHistory});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -183,7 +180,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Apakah Anda yakin ingin melakukan absen masuk saat ini?'),
+            const Text(
+              'Apakah Anda yakin ingin melakukan absen masuk saat ini?',
+            ),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(10),
@@ -196,7 +195,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.place, size: 16, color: Color(0xFF1E3A8A)),
+                      const Icon(
+                        Icons.place,
+                        size: 16,
+                        color: Color(0xFF1E3A8A),
+                      ),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
@@ -309,7 +312,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.place, size: 16, color: Color(0xFF1E3A8A)),
+                      const Icon(
+                        Icons.place,
+                        size: 16,
+                        color: Color(0xFF1E3A8A),
+                      ),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
@@ -411,7 +418,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               controller: reasonController,
               maxLines: 3,
               decoration: InputDecoration(
-                hintText: 'Contoh: Izin sakit demam / Keperluan mendesak keluarga',
+                hintText:
+                    'Contoh: Izin sakit demam / Keperluan mendesak keluarga',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -636,17 +644,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 )
                               : const Icon(Icons.refresh_rounded, size: 20),
                           tooltip: 'Perbarui Lokasi',
-                          onPressed:
-                              _isLoadingLocation ? null : _loadLocationData,
+                          onPressed: _isLoadingLocation
+                              ? null
+                              : _loadLocationData,
                         ),
                       ],
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      _currentLocation?.address ?? 'Sedang mendeteksi alamat...',
+                      _currentLocation?.address ??
+                          'Sedang mendeteksi alamat...',
                       style: TextStyle(
                         fontSize: 13,
-                        color: isDark ? Colors.grey.shade300 : Colors.grey.shade800,
+                        color: isDark
+                            ? Colors.grey.shade300
+                            : Colors.grey.shade800,
                         height: 1.3,
                       ),
                     ),
@@ -842,10 +854,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 20),
             const Text(
               'Statistik Kehadiran Anda',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Row(
@@ -968,10 +977,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 const Text(
                   'Aktivitas Terakhir',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 TextButton(
                   onPressed: widget.onOpenHistory,
@@ -1007,7 +1013,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     'Masuk: ${_todayAbsen!.checkIn ?? '-'} | Pulang: ${_todayAbsen!.checkOut ?? '-'}',
                     style: const TextStyle(fontSize: 12),
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 14,
+                  ),
                   onTap: widget.onOpenHistory,
                 ),
               )
