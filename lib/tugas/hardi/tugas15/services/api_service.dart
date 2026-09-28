@@ -112,7 +112,7 @@ class ApiService {
     }
     final json = await _request(
       method: 'POST',
-      path: status == 'izin' ? '/absen/izin' : '/absen/check-in',
+      path: '/absen/check-in',
       token: token,
       body: body,
       errorPrefix: status == 'izin'
@@ -120,6 +120,48 @@ class ApiService {
           : 'Absen masuk gagal',
     );
     return AbsenResponse.fromJson(json);
+  }
+
+  Future<bool> deleteAbsen(int id) async {
+    final token = await SessionManager.getToken();
+    try {
+      await _request(
+        method: 'DELETE',
+        path: '/absen/$id',
+        token: token,
+        errorPrefix: 'Gagal menghapus absensi',
+      );
+      return true;
+    } catch (_) {
+      await _request(
+        method: 'DELETE',
+        path: '/absen/izin/$id',
+        token: token,
+        errorPrefix: 'Gagal menghapus absensi',
+      );
+      return true;
+    }
+  }
+
+  Future<bool> deleteUser(int id) async {
+    final token = await SessionManager.getToken();
+    try {
+      await _request(
+        method: 'DELETE',
+        path: '/users/$id',
+        token: token,
+        errorPrefix: 'Gagal menghapus pengguna',
+      );
+      return true;
+    } catch (_) {
+      await _request(
+        method: 'DELETE',
+        path: '/user/$id',
+        token: token,
+        errorPrefix: 'Gagal menghapus pengguna',
+      );
+      return true;
+    }
   }
 
   Future<AbsenResponse> checkOut({
@@ -157,9 +199,12 @@ class ApiService {
     final token = await SessionManager.getToken();
     return _request(
       method: 'POST',
-      path: '/absen/izin',
+      path: '/absen/check-in',
       token: token,
-      body: {'alasan': alasan},
+      body: {
+        'status': 'izin',
+        'alasan_izin': alasan,
+      },
       errorPrefix: 'Pengajuan izin gagal',
     );
   }

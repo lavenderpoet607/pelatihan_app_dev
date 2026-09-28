@@ -60,6 +60,140 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
   }
 
+  Future<void> _konfirmasiHapus(AbsenModel absen) async {
+    final konfirmasi = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.red.shade50,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                Icons.delete_forever_rounded,
+                color: Colors.red.shade700,
+                size: 22,
+              ),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Hapus Absensi',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Apakah Anda yakin ingin menghapus data presensi berikut?',
+              style: TextStyle(
+                fontSize: 13,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey.shade300
+                    : Colors.grey.shade800,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? const Color(0xFF1E293B)
+                    : const Color(0xFFF1F5F9),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.red.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${absen.tanggalFormatted} (${absen.statusLabel})',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Masuk: ${absen.checkIn ?? '-'} | Pulang: ${absen.checkOut ?? '-'}',
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    absen.address,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 11, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Tindakan ini tidak dapat dibatalkan. Catatan presensi akan dihapus dari server.',
+              style: TextStyle(fontSize: 11, color: Colors.red),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Batal'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red.shade600,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Text(
+              'Hapus',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (konfirmasi != true) return;
+
+    try {
+      await _apiService.deleteAbsen(absen.id);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Data absensi berhasil dihapus'),
+          backgroundColor: Color(0xFF059669),
+        ),
+      );
+      _loadHistory();
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString().replaceFirst('Exception: ', '')),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   List<AbsenModel> get _filtered {
     if (_filter == 'semua') return _history;
     if (_filter == 'masuk') {
@@ -246,45 +380,61 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ? Icons.check_circle_outline_rounded
             : Icons.login_rounded;
 
-    return Card(
-      elevation: 1,
-      margin: const EdgeInsets.only(bottom: 10),
-      shape: RoundedRectangleBorder(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Material(
+        color: isDark ? const Color(0xFF1E293B) : Colors.white,
+        elevation: 1,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-        leading: CircleAvatar(
-          backgroundColor: warna.withValues(alpha: 0.15),
-          foregroundColor: warna,
-          child: Icon(ikon, size: 20),
-        ),
-        title: Text(
-          '${absen.tanggalFormatted} - ${absen.statusLabel}',
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 4),
-            Text(
-              'Masuk: ${absen.checkIn ?? '-'}  |  Pulang: ${absen.checkOut ?? '-'}',
-              style: const TextStyle(fontSize: 11),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              absen.address,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 11,
-                color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+          leading: CircleAvatar(
+            backgroundColor: warna.withValues(alpha: 0.15),
+            foregroundColor: warna,
+            child: Icon(ikon, size: 20),
+          ),
+          title: Text(
+            '${absen.tanggalFormatted} - ${absen.statusLabel}',
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 4),
+              Text(
+                'Masuk: ${absen.checkIn ?? '-'}  |  Pulang: ${absen.checkOut ?? '-'}',
+                style: const TextStyle(fontSize: 11),
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                absen.address,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+                ),
+              ),
+            ],
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.delete_outline_rounded,
+                  color: Colors.red,
+                  size: 22,
+                ),
+                tooltip: 'Hapus data absensi',
+                onPressed: () => _konfirmasiHapus(absen),
+              ),
+              const Icon(Icons.chevron_right_rounded, size: 20),
+            ],
+          ),
+          onTap: () => _bukaDetail(absen),
         ),
-        trailing: const Icon(Icons.chevron_right_rounded, size: 20),
-        onTap: () => _bukaDetail(absen),
       ),
     );
   }
@@ -417,6 +567,35 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF4F46E5),
                     foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _konfirmasiHapus(absen);
+                  },
+                  icon: const Icon(
+                    Icons.delete_outline_rounded,
+                    size: 18,
+                    color: Colors.red,
+                  ),
+                  label: const Text(
+                    'Hapus Data Absensi Ini',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Colors.red.shade300),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
